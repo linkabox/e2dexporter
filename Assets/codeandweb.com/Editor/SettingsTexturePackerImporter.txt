@@ -1,0 +1,12 @@
+version: 2
+importPivots: 1
+tpsheetFileNames:
+- Assets/UI/DemoAtlas/DemoAtlas.tpsheet
+- Assets/UI/TestAtlas/TestAtlas.tpsheet
+textureFileNames:
+- Assets/UI/DemoAtlas/DemoAtlas.png
+- Assets/UI/TestAtlas/TestAtlas.png
+normalmapFileNames:
+- 
+- 
+enableDebugOutput: 0
