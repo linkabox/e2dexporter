@@ -20,8 +20,7 @@ public class E2DText : E2DUIComponent
 	public override string ExportFrame(int index)
 	{
 		//ejoy2d的字体对齐方式，在这里修正最终位置
-		var rectTrans = text.rectTransform;
-		var fixPos = new Vector3(-rectTrans.sizeDelta.x / 2, rectTrans.sizeDelta.y / 2, 0);
+		var fixPos = new Vector3(-node.sizeDelta.x / 2, node.sizeDelta.y / 2, 0);
 		var mat = E2DMatrix3x2.FromUIComOffset(this, fixPos);
 		return string.Format("{{index = {0}, mat = {1}}},\n", index, mat);
 	}

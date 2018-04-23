@@ -6,9 +6,14 @@ public abstract class E2DUIComponent : E2DComponent
 	public RectTransform root;
 	public RectTransform node;
 
+	public Vector3 e2dPos
+	{
+		get { return root.InverseTransformPoint(node.position); }
+	}
+
 	public virtual string ExportCom()
 	{
-		return string.Format("\t\t{{id = {0}, name = \"{1}\"}},\n", this.id, this.name);
+		return string.Format("\t\t{{id = {0}, name = \"{1}\"}},\n", this.id, E2DHelper.PrintNodePath(node, root, false));
 	}
 
 	public abstract string ExportFrame(int index);

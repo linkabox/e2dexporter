@@ -45,10 +45,6 @@ public class E2DWidget : E2DUIComponent
 	public void Convert()
 	{
 		ParseComponent(root, root);
-		foreach (RectTransform child in root)
-		{
-			ParseComponent(child, root);
-		}
 	}
 
 	/// <summary>
@@ -58,46 +54,42 @@ public class E2DWidget : E2DUIComponent
 	/// <param name="root"></param>
 	private void ParseComponent(RectTransform node, RectTransform root)
 	{
+		var nestedPrefab = node.GetComponent<NestedPrefab>();
+		if (nestedPrefab != null)
+		{
+			E2DWidget refWidget = E2DPackage.active.GetWidget(nestedPrefab.Asset.name);
+			//这是一个引用外部Prefab的按钮控件
+			this.components.Add(new E2DWidgetRef(refWidget, node, root));
+			return;
+		}
+
 		bool isAnchor = true;
 		var btn = node.GetComponent<Button>();
 		if (btn != null)
 		{
 			isAnchor = false;
-			var nestedPrefab = node.GetComponent<NestedPrefab>();
-			if (nestedPrefab != null)
+			//这是一个按钮组件
+			if (btn.image != null)
 			{
-				E2DWidget refWidget = E2DPackage.active.GetWidget(nestedPrefab.Asset.name);
-				//这是一个引用外部Prefab的按钮控件
-				this.components.Add(new E2DWidgetRef(refWidget, node, root));
-				return;
-			}
-			else
-			{
-				//这是一个按钮组件
-				if (btn.image != null)
+				//if (node != root)
+				//{
+				//	Debug.LogError("不支持此种方式布局，Button应该制作为独立控件：" + E2DHelper.PrintNodePath(node, root));
+				//}
+
+				E2DSprite e2DSprite;
+				if (E2DPackage.active.spriteRefMap.TryGetValue(btn.image.sprite, out e2DSprite))
 				{
-					if (node != root)
-					{
-						Debug.LogError("不支持此种方式布局，Button应该制作为独立控件：" + E2DHelper.PrintNodePath(node, root));
-					}
-					else
-					{
-						E2DSprite e2DSprite;
-						if (E2DPackage.active.spriteRefMap.TryGetValue(btn.image.sprite, out e2DSprite))
-						{
-							var e2dBtn = new E2DButton(e2DSprite, btn, root);
-							this.components.Add(e2dBtn);
-						}
-						else
-						{
-							Debug.LogError("该按钮图片没有引用图集内资源");
-						}
-					}
+					var e2dBtn = new E2DButton(e2DSprite, btn, root);
+					this.components.Add(e2dBtn);
 				}
 				else
 				{
-					Debug.LogError("Button必须要有目标图片：" + E2DHelper.PrintNodePath(node, root));
+					Debug.LogError("该按钮图片没有引用图集内资源");
 				}
+			}
+			else
+			{
+				Debug.LogError("Button必须要有目标图片：" + E2DHelper.PrintNodePath(node, root));
 			}
 		}
 
@@ -125,10 +117,16 @@ public class E2DWidget : E2DUIComponent
 			this.components.Add(e2dText);
 		}
 
-		if (isAnchor && node != root)
+		if (isAnchor && node != root && node.childCount == 0)
 		{
 			var e2dAnchor = new E2DAnchor(node, root);
 			this.components.Add(e2dAnchor);
+		}
+
+		//遍历其子节点
+		foreach (RectTransform child in node)
+		{
+			ParseComponent(child, root);
 		}
 	}
 

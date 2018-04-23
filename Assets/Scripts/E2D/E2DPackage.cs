@@ -168,9 +168,11 @@ public static class E2DHelper
 		return string.Format("0x{0:x2}{1:x2}{2:x2}{3:x2}", c32.a, c32.r, c32.g, c32.b);
 	}
 
-	public static string PrintNodePath(Transform node, Transform root)
+	public static string PrintNodePath(Transform node, Transform root, bool printRoot = true)
 	{
-		return root.name + "/" + AnimationUtility.CalculateTransformPath(node, root);
+		if (printRoot)
+			return root.name + "/" + AnimationUtility.CalculateTransformPath(node, root);
+		return AnimationUtility.CalculateTransformPath(node, root);
 	}
 
 	public static int GetClipFrameCount(this AnimationClip clip)

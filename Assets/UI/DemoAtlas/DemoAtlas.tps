@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.6.1</string>
         <key>fileName</key>
-        <string>D:/UnityHub/2DTest/Assets/UI/DemoAtlas/DemoAtlas.tps</string>
+        <string>D:/GitHub/e2dexporter/Assets/UI/DemoAtlas/DemoAtlas.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -110,7 +110,7 @@
             <key>sizeConstraints</key>
             <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
-            <false/>
+            <true/>
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
@@ -199,6 +199,42 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">imgs~/mahjong_1.png</key>
+            <key type="filename">imgs~/mahjong_10.png</key>
+            <key type="filename">imgs~/mahjong_11.png</key>
+            <key type="filename">imgs~/mahjong_12.png</key>
+            <key type="filename">imgs~/mahjong_13.png</key>
+            <key type="filename">imgs~/mahjong_14.png</key>
+            <key type="filename">imgs~/mahjong_15.png</key>
+            <key type="filename">imgs~/mahjong_16.png</key>
+            <key type="filename">imgs~/mahjong_17.png</key>
+            <key type="filename">imgs~/mahjong_18.png</key>
+            <key type="filename">imgs~/mahjong_19.png</key>
+            <key type="filename">imgs~/mahjong_2.png</key>
+            <key type="filename">imgs~/mahjong_20.png</key>
+            <key type="filename">imgs~/mahjong_21.png</key>
+            <key type="filename">imgs~/mahjong_22.png</key>
+            <key type="filename">imgs~/mahjong_23.png</key>
+            <key type="filename">imgs~/mahjong_24.png</key>
+            <key type="filename">imgs~/mahjong_3.png</key>
+            <key type="filename">imgs~/mahjong_4.png</key>
+            <key type="filename">imgs~/mahjong_5.png</key>
+            <key type="filename">imgs~/mahjong_6.png</key>
+            <key type="filename">imgs~/mahjong_7.png</key>
+            <key type="filename">imgs~/mahjong_8.png</key>
+            <key type="filename">imgs~/mahjong_9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>43,64,85,128</rect>
+                <key>scale9Paddings</key>
+                <rect>43,64,85,128</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">imgs~/p1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -480,19 +516,6 @@
                 <rect>57,8,113,15</rect>
                 <key>scale9Paddings</key>
                 <rect>57,8,113,15</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p31.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>71,125,141,250</rect>
-                <key>scale9Paddings</key>
-                <rect>71,125,141,250</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
