@@ -76,7 +76,13 @@ public class E2DFontStyle : E2DComponent
 
 	public bool Equals(E2DFontStyle other)
 	{
-		return size == other.size && align == other.align && noedge == other.noedge && color.Equals(other.color) && width == other.width && height == other.height;
+		return size == other.size &&
+			   align == other.align &&
+			   noedge == other.noedge &&
+			   color.Equals(other.color) &&
+			   width == other.width &&
+			   height == other.height &&
+			   langKey == other.langKey;
 	}
 
 	public override int GetHashCode()
