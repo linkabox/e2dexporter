@@ -139,7 +139,10 @@ public class E2DWidget : E2DUIComponent
 		for (var i = 0; i < components.Count; i++)
 		{
 			var com = components[i];
-			sb.AppendFormat("\t\t\t{0}", com.ExportFrame(i));
+			if (com.node.gameObject.activeInHierarchy)
+			{
+				sb.AppendFormat("\t\t\t{0}", com.ExportFrame(i));
+			}
 		}
 		sb.AppendLine("\t\t},");
 		return sb.ToString();
