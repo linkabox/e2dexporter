@@ -32,6 +32,7 @@ public class E2DWidgetRef : E2DUIComponent
 public class E2DWidget : E2DUIComponent
 {
 	public List<E2DUIComponent> components = new List<E2DUIComponent>();
+	public Dictionary<Image, Dictionary<Sprite, int>> spriteIndexMap = new Dictionary<Image, Dictionary<Sprite, int>>();
 	public E2DAnimator animator;
 
 	public E2DWidget(Transform root)
@@ -45,6 +46,56 @@ public class E2DWidget : E2DUIComponent
 	public void Convert()
 	{
 		ParseComponent(root, root);
+		if (animator != null)
+		{
+			foreach (var clip in animator.exportClips)
+			{
+				if (clip == null)
+				{
+					Debug.LogError("Clip is null:" + animator.name);
+					continue;
+				}
+
+				var allObjBindings = AnimationUtility.GetObjectReferenceCurveBindings(clip);
+				foreach (var binding in allObjBindings)
+				{
+					var image = AnimationUtility.GetAnimatedObject(this.root.gameObject, binding) as Image;
+					if (image != null)
+					{
+						var keyFrames = AnimationUtility.GetObjectReferenceCurve(clip, binding);
+						foreach (var frame in keyFrames)
+						{
+							var sprite = frame.value as Sprite;
+							if (sprite != null)
+							{
+								E2DSprite e2DSprite;
+								if (E2DPackage.active.spriteRefMap.TryGetValue(sprite, out e2DSprite))
+								{
+									Dictionary<Sprite, int> spriteIndexes;
+									if (!this.spriteIndexMap.TryGetValue(image, out spriteIndexes))
+									{
+										spriteIndexes = new Dictionary<Sprite, int>();
+										this.spriteIndexMap.Add(image, spriteIndexes);
+									}
+
+									if (!spriteIndexes.ContainsKey(sprite))
+									{
+										var e2dImage = new E2DImage(e2DSprite, image, this, root);
+										e2dImage.ignoreFrame = true;
+										this.components.Add(e2dImage);
+										spriteIndexes.Add(sprite, this.components.Count - 1);
+									}
+								}
+								else
+								{
+									Debug.LogError("引用到不在图集内的Sprite:" + E2DHelper.PrintNodePath(node, root), sprite);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/// <summary>
@@ -100,8 +151,19 @@ public class E2DWidget : E2DUIComponent
 			E2DSprite e2DSprite;
 			if (E2DPackage.active.spriteRefMap.TryGetValue(image.sprite, out e2DSprite))
 			{
-				var e2dImage = new E2DImage(e2DSprite, image, root);
-				this.components.Add(e2dImage);
+				Dictionary<Sprite, int> spriteIndexes;
+				if (!this.spriteIndexMap.TryGetValue(image, out spriteIndexes))
+				{
+					spriteIndexes = new Dictionary<Sprite, int>();
+					this.spriteIndexMap.Add(image, spriteIndexes);
+				}
+
+				if (!spriteIndexes.ContainsKey(image.sprite))
+				{
+					var e2dImage = new E2DImage(e2DSprite, image, this, root);
+					this.components.Add(e2dImage);
+					spriteIndexes.Add(image.sprite, this.components.Count - 1);
+				}
 			}
 			else
 			{
@@ -137,7 +199,7 @@ public class E2DWidget : E2DUIComponent
 		for (var i = 0; i < components.Count; i++)
 		{
 			var com = components[i];
-			if (com.node.gameObject.activeInHierarchy)
+			if (com.node.gameObject.activeInHierarchy && !com.ignoreFrame)
 			{
 				sb.AppendFormat("\t\t\t{0}", com.ExportFrame(i));
 			}
@@ -170,13 +232,19 @@ public class E2DWidget : E2DUIComponent
 		{
 			foreach (var clip in animator.exportClips)
 			{
+				if (clip == null)
+				{
+					Debug.LogError("Clip is null:" + animator.name);
+					continue;
+				}
+
 				sb.AppendLine("\t{");
 				sb.AppendFormat("\t\taction = \"{0}\",\n", clip.name);
 				int frameCount = clip.GetClipFrameCount();
 				Debug.LogFormat("Export AnimationClip:{0} {1}", clip.name, frameCount);
 				for (int i = 0; i < frameCount; i++)
 				{
-					this.animator.SampleAnimation(clip, (float)i / frameCount);
+					this.animator.SampleAnimation(clip, i * (1f / clip.frameRate));
 					sb.Append(ExportFrame(0));
 				}
 				//重置初始状态，采样下一个Clip

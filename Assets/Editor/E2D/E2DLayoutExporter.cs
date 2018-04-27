@@ -89,26 +89,30 @@ public class E2DLayoutExporter : EditorWindow
 		{
 			string prefabPath = AssetDatabase.GUIDToAssetPath(uid);
 			var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-			GameObject instGo = Instantiate(prefab, E2DLocalization.E2DUIRoot.transform);
-			Transform instTrans = instGo.transform;
-			if (instTrans.localScale != Vector3.one)
+			//Prefab根节点隐藏的忽略导出
+			if (prefab.activeSelf)
 			{
-				Debug.LogErrorFormat("根节点Scale{0}不符合要求: {1}", instTrans.localScale, prefab.name);
-				prefab.transform.localScale = Vector3.one;
-				instTrans.localScale = Vector3.one;
-			}
+				GameObject instGo = Instantiate(prefab, E2DLocalization.E2DUIRoot.transform);
+				Transform instTrans = instGo.transform;
+				if (instTrans.localScale != Vector3.one)
+				{
+					Debug.LogErrorFormat("根节点Scale{0}不符合要求: {1}", instTrans.localScale, prefab.name);
+					prefab.transform.localScale = Vector3.one;
+					instTrans.localScale = Vector3.one;
+				}
 
-			if (instTrans.localPosition != Vector3.zero)
-			{
-				Debug.LogErrorFormat("根节点Pos{0}不符合要求: {1}", instTrans.localPosition, prefab.name);
-				prefab.transform.localPosition = Vector3.zero;
-				instTrans.localPosition = Vector3.zero;
-			}
+				if (instTrans.localPosition != Vector3.zero)
+				{
+					Debug.LogErrorFormat("根节点Pos{0}不符合要求: {1}", instTrans.localPosition, prefab.name);
+					prefab.transform.localPosition = Vector3.zero;
+					instTrans.localPosition = Vector3.zero;
+				}
 
-			instGo.name = prefab.name;
-			e2dPackage.AddWidget(instTrans);
-			_instGoList.Add(instGo);
-			logger.AppendLine("register:" + prefabPath);
+				instGo.name = prefab.name;
+				e2dPackage.AddWidget(instTrans);
+				_instGoList.Add(instGo);
+				logger.AppendLine("register:" + prefabPath);
+			}
 		}
 
 		logger.AppendLine();
@@ -143,7 +147,6 @@ public class E2DLayoutExporter : EditorWindow
 				string dest = Path.Combine(exportDir, e2dPackage.name + (i + 1) + ".png");
 				FileUtil.ReplaceFile(source, dest);
 				logger.AppendLine("Export Texture:" + dest);
-				//Process.Start(Path.GetFullPath("Assets/Editor/E2D/alpha.bat"), dest);
 			}
 		}
 
@@ -153,8 +156,18 @@ public class E2DLayoutExporter : EditorWindow
 			DestroyImmediate(go);
 		}
 
+		//将coco导出为bin格式
+		string workingDir = Path.GetDirectoryName(exportDir);
+		Process p = new Process();
+		p.StartInfo.WorkingDirectory = workingDir;
+		p.StartInfo.FileName = Path.Combine(workingDir, @"platform\msvc\output\Debug\ej2dx.exe");
+		p.StartInfo.Arguments = string.Format("-d {0}\\ -r coco_packer -u {1}", workingDir, e2dPackage.name);
+		p.StartInfo.UseShellExecute = false;
+		p.Start();
+		p.WaitForExit();
+
 		Debug.Log(logger);
-		EditorUtility.DisplayDialog("Finish", "生成成功!", "OK");
+		//EditorUtility.DisplayDialog("Finish", "生成成功!", "OK");
 		AssetDatabase.Refresh();
 	}
 }

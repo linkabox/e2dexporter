@@ -41,7 +41,7 @@ public struct E2DMatrix3x2
 
 	public static E2DMatrix3x2 FromE2DImage(E2DUIComponent com, E2DSprite e2DSprite)
 	{
-		var mat4x4 = Matrix4x4.TRS(com.e2dPos, com.node.localRotation, com.node.localScale);
+		var mat4x4 = Matrix4x4.TRS(com.e2dPos, com.node.rotation, com.node.lossyScale);
 		var scale = Matrix4x4.Scale(new Vector3(com.node.sizeDelta.x / e2DSprite.w, com.node.sizeDelta.y / e2DSprite.h, 1));
 		var mat = new E2DMatrix3x2(mat4x4 * scale);
 		return mat;
@@ -49,13 +49,15 @@ public struct E2DMatrix3x2
 
 	public static E2DMatrix3x2 FromUICom(E2DUIComponent com)
 	{
-		var mat4x4 = Matrix4x4.TRS(com.e2dPos, com.node.localRotation, com.node.localScale);
+		var mat4x4 = Matrix4x4.TRS(com.e2dPos, com.node.rotation, com.node.lossyScale);
 		return new E2DMatrix3x2(mat4x4);
 	}
 
-	public static E2DMatrix3x2 FromUIComOffset(E2DUIComponent com, Vector3 offset)
+	public static E2DMatrix3x2 FromText(E2DUIComponent com)
 	{
-		var mat4x4 = Matrix4x4.TRS(com.e2dPos + offset, com.node.localRotation, com.node.localScale);
+		var fixPos = new Vector3(-com.node.sizeDelta.x * com.node.lossyScale.x / 2, com.node.sizeDelta.y * com.node.lossyScale.y / 2, 0);
+		fixPos = com.node.rotation * fixPos;
+		var mat4x4 = Matrix4x4.TRS(com.e2dPos + fixPos, com.node.rotation, com.node.lossyScale);
 		return new E2DMatrix3x2(mat4x4);
 	}
 

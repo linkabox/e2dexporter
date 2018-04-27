@@ -5,6 +5,7 @@ public abstract class E2DUIComponent : E2DComponent
 {
 	public RectTransform root;
 	public RectTransform node;
+	public bool ignoreFrame;
 
 	public Vector3 e2dPos
 	{
@@ -13,7 +14,10 @@ public abstract class E2DUIComponent : E2DComponent
 
 	public virtual string ExportCom()
 	{
-		return string.Format("\t\t{{id = {0}, name = \"{1}\"}},\n", this.id, E2DHelper.PrintNodePath(node, root, false));
+		string name = E2DHelper.PrintNodePath(node, root, false);
+		if (string.IsNullOrEmpty(name))
+			return string.Format("\t\t{{id = {0}}},\n", this.id);
+		return string.Format("\t\t{{id = {0}, name = \"{1}\"}},\n", this.id, name);
 	}
 
 	public abstract string ExportFrame(int index);

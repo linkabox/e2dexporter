@@ -21,7 +21,6 @@ public class E2DFontStyle : E2DComponent
 	public E2DFontStyle(Text text)
 	{
 		this.size = text.fontSize;
-		this.noedge = true;
 		this.color = text.color;
 		this.width = (int)text.rectTransform.sizeDelta.x;
 		this.height = (int)text.rectTransform.sizeDelta.y;
@@ -39,12 +38,18 @@ public class E2DFontStyle : E2DComponent
 				break;
 			case TextAnchor.MiddleLeft:
 			case TextAnchor.LowerLeft:
+				this.align = 0;
+				Debug.LogError("ejoy2d不支持此种字体对齐方式：" + E2DHelper.PrintNodePath(text.transform, E2DHelper.FindRoot(text.transform)));
+				break;
 			case TextAnchor.MiddleCenter:
 			case TextAnchor.LowerCenter:
+				this.align = 2;
+				Debug.LogError("ejoy2d不支持此种字体对齐方式：" + E2DHelper.PrintNodePath(text.transform, E2DHelper.FindRoot(text.transform)));
+				break;
 			case TextAnchor.MiddleRight:
 			case TextAnchor.LowerRight:
-				this.align = 2;
-				Debug.LogError("ejoy2d不支持此种字体对齐方式：" + text.name);
+				this.align = 1;
+				Debug.LogError("ejoy2d不支持此种字体对齐方式：" + E2DHelper.PrintNodePath(text.transform, E2DHelper.FindRoot(text.transform)));
 				break;
 			default:
 				this.align = 2;
@@ -56,6 +61,9 @@ public class E2DFontStyle : E2DComponent
 		{
 			this.langKey = localize.key;
 		}
+
+		var outline = text.GetComponent<Outline>();
+		this.noedge = outline == null;
 	}
 
 	public override string Export()
@@ -69,6 +77,10 @@ public class E2DFontStyle : E2DComponent
 		if (text_id != -1)
 		{
 			sb.AppendFormat("\ttext_id = {0},\n", text_id + 1);
+		}
+		else
+		{
+			sb.AppendFormat("\ttext_id = {0},\n", 1);
 		}
 		sb.AppendLine("}");
 		return sb.ToString();

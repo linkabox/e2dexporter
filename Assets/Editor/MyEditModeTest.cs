@@ -23,7 +23,10 @@ public class MyEditModeTest
 			Debug.Log("localPosition:" + rectTrans.localPosition);
 			Debug.Log("worldPosition:" + rectTrans.position);
 			Debug.Log("anchoredPosition:" + rectTrans.anchoredPosition);
-			Debug.Log(rectTrans.parent.InverseTransformPoint(rectTrans.position));
+			Debug.Log(rectTrans.parent.parent.InverseTransformPoint(rectTrans.position));
+			Debug.Log("lossyScale:" + rectTrans.lossyScale);
+			Debug.Log("localEulerAngles:" + rectTrans.localEulerAngles);
+			Debug.Log("eulerAngles:" + rectTrans.eulerAngles);
 		}
 	}
 
@@ -104,12 +107,12 @@ public class MyEditModeTest
 	[Test]
 	public void UnitTest()
 	{
-		var langDic = new SortedList<string, string>();
-		langDic.Add("BTN_OPEN", "close");
-		langDic.Add("BTN_CLOSE", "close");
+		//var langDic = new SortedList<string, string>();
+		//langDic.Add("BTN_OPEN", "close");
 		//langDic.Add("BTN_CLOSE", "close");
-		
-		Debug.Log(langDic.IndexOfKey("BTN_CLOSE"));
+		////langDic.Add("BTN_CLOSE", "close");
+
+		//Debug.Log(langDic.IndexOfKey("BTN_CLOSE"));
 
 		//var coms = Selection.activeTransform.GetComponents<Component>();
 		//foreach (var component in coms)
@@ -271,13 +274,16 @@ public class MyEditModeTest
 	[Test]
 	public void AnimationClipTest()
 	{
-		GameObject go = GameObject.Find("DemoPanel");
+		GameObject go = GameObject.Find("numGIF");
 		var clip = Selection.activeObject as AnimationClip;
 		Debug.Log(clip.GetClipFrameCount());
-		var allBindings = AnimationUtility.GetCurveBindings(clip);
+
+		var allBindings = AnimationUtility.GetObjectReferenceCurveBindings(clip);
 		foreach (var binding in allBindings)
 		{
-			Debug.Log(AnimationUtility.GetAnimatedObject(go, binding).name);
+			var image = AnimationUtility.GetAnimatedObject(go, binding);
+			var keyFrames = AnimationUtility.GetObjectReferenceCurve(clip, binding);
+			Debug.Log(keyFrames.Length);
 		}
 	}
 }

@@ -175,6 +175,16 @@ public static class E2DHelper
 		return AnimationUtility.CalculateTransformPath(node, root);
 	}
 
+	public static Transform FindRoot(Transform node)
+	{
+		Transform parent = null;
+		while (node.parent != null && node.parent != E2DLocalization.E2DUIRoot.transform)
+		{
+			node = node.parent;
+		}
+		return node;
+	}
+
 	public static int GetClipFrameCount(this AnimationClip clip)
 	{
 		return (int)(clip.length * clip.frameRate);
