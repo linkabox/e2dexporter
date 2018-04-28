@@ -85,7 +85,7 @@ public class MyEditModeTest
 			var sm = new SpriteMetaData
 			{
 				name = cocoSpriteMeta.name,
-				rect = cocoSpriteMeta.rect
+				rect = cocoSpriteMeta.src
 			};
 			textureSpriteMetas[cocoSpriteMeta.texId].Add(sm);
 		}

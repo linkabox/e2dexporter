@@ -9,7 +9,7 @@ public class CocoAnimatior : MonoBehaviour
 	public GameObject spritePrefab;
 	public string anim_name;
 	public int fps = 30;
-	public List<Sprite> sprites;
+	public List<CocoSpritaMeta> spriteMetas;
 	public float timer;
 
 	public int curFrame;
@@ -23,10 +23,10 @@ public class CocoAnimatior : MonoBehaviour
 		_animMeta = CocoResMgr.GetAnimMetaByName(anim_name);
 		if (_animMeta != null)
 		{
-			sprites = new List<Sprite>();
+			spriteMetas = new List<CocoSpritaMeta>();
 			foreach (int id in _animMeta.components)
 			{
-				sprites.Add(CocoResMgr.GetSprite(id));
+				spriteMetas.Add(CocoResMgr.GetSpriteMeta(id));
 			}
 
 			_spriteRenderers = new List<SpriteRenderer>(_animMeta.max_render_count);
@@ -44,7 +44,7 @@ public class CocoAnimatior : MonoBehaviour
 	void Update()
 	{
 		if (_animMeta == null) return;
-		if (sprites == null || sprites.Count == 0) return;
+		if (spriteMetas == null || spriteMetas.Count == 0) return;
 
 		interval = 1f / fps;
 		timer += Time.deltaTime;
@@ -65,9 +65,12 @@ public class CocoAnimatior : MonoBehaviour
 		{
 			var ft = frameTrans[i];
 			var renderer = _spriteRenderers[i];
+			var meta = spriteMetas[ft.index];
 			renderer.enabled = true;
-			renderer.sprite = sprites[ft.index];
+			renderer.sprite = CocoResMgr.GetSprite(meta.id);
 			E2DMatrix3x2.SetTransformFromMatrix(renderer.transform, ft.mat);
+			var scale = renderer.transform.localScale;
+			renderer.transform.localScale = new Vector3(scale.x * meta.scaleX, scale.y * meta.scaleY, 1);
 		}
 
 		//禁用当前帧多余Renderer

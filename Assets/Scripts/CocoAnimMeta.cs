@@ -22,18 +22,18 @@ public class CocoFrameTrans
 
 public static class CocoResMgr
 {
-	private static List<CocoAnimMeta> _allAnimations;
+	private static CocoPackage _cocoPackage;
 
 	public static List<CocoAnimMeta> AnimationList
 	{
 		get
 		{
-			if (_allAnimations == null)
+			if (_cocoPackage == null)
 			{
 				LoadRes();
 			}
 
-			return _allAnimations;
+			return _cocoPackage.animations;
 		}
 	}
 
@@ -51,15 +51,35 @@ public static class CocoResMgr
 		}
 	}
 
+	private static Dictionary<int, CocoSpritaMeta> _spriteMetas;
+	public static Dictionary<int, CocoSpritaMeta> SpriteMetas
+	{
+		get
+		{
+			if (_spriteMetas == null)
+			{
+				LoadRes();
+			}
+
+			return _spriteMetas;
+		}
+	}
+
 
 	public static void LoadRes()
 	{
-		if (_allAnimations != null) return;
+		if (_cocoPackage != null) return;
 
 		string resDir = "Assets/coco_res/";
 		//加载动画配置
-		var ta = AssetDatabase.LoadAssetAtPath<TextAsset>(resDir + "characters2_anim.json");
-		_allAnimations = JsonMapper.ToObject<List<CocoAnimMeta>>(ta.text);
+		var ta = AssetDatabase.LoadAssetAtPath<TextAsset>(resDir + "characters2_pak.json");
+		_cocoPackage = JsonMapper.ToObject<CocoPackage>(ta.text);
+
+		_spriteMetas = new Dictionary<int, CocoSpritaMeta>();
+		foreach (var spritaMeta in _cocoPackage.sprites)
+		{
+			_spriteMetas.Add(spritaMeta.id, spritaMeta);
+		}
 
 		//加载所有Sprite
 		_allSprites = new Dictionary<int, Sprite>();
@@ -103,5 +123,12 @@ public static class CocoResMgr
 		Sprite sprite;
 		SpriteDic.TryGetValue(id, out sprite);
 		return sprite;
+	}
+
+	public static CocoSpritaMeta GetSpriteMeta(int id)
+	{
+		CocoSpritaMeta meta;
+		SpriteMetas.TryGetValue(id, out meta);
+		return meta;
 	}
 }
