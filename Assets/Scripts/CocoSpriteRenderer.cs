@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
-public class CocoSpriteRenderer : MonoBehaviour
+public class CocoSpriteRenderer : CocoRenderer
 {
 	public int spriteId;
 	private MeshRenderer _renderer;
@@ -61,7 +61,7 @@ public class CocoSpriteRenderer : MonoBehaviour
 			Debug.LogError("GetTexture Error:" + _spriteMeta.texId);
 			return;
 		}
-		renderer.material.mainTexture = _spriteTex;
+		renderer.sharedMaterial = CocoResMgr.GetMaterial(_spriteMeta.texId);
 		meshFilter.mesh = CocoResMgr.CreateSpriteMesh(_spriteMeta, _spriteTex);
 	}
 }

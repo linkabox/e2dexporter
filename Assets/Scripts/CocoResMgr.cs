@@ -20,20 +20,6 @@ public static class CocoResMgr
 		}
 	}
 
-	//private static Dictionary<int, Sprite> _allSprites;
-	//public static Dictionary<int, Sprite> SpriteDic
-	//{
-	//	get
-	//	{
-	//		if (_allSprites == null)
-	//		{
-	//			LoadRes();
-	//		}
-
-	//		return _allSprites;
-	//	}
-	//}
-
 	private static Dictionary<int, Mesh> _allSpriteMeshes;
 	public static Dictionary<int, Mesh> SpriteMeshDic
 	{
@@ -62,18 +48,31 @@ public static class CocoResMgr
 		}
 	}
 
-
-	private static Dictionary<int, CocoSpritaMeta> _spriteMetas;
-	public static Dictionary<int, CocoSpritaMeta> SpriteMetas
+	private static List<Material> _materials;
+	public static List<Material> SpriteMaterials
 	{
 		get
 		{
-			if (_spriteMetas == null)
+			if (_materials == null)
 			{
 				LoadRes();
 			}
 
-			return _spriteMetas;
+			return _materials;
+		}
+	}
+
+	private static Dictionary<int, CocoMetaData> _metaDatas;
+	public static Dictionary<int, CocoMetaData> MetaDatas
+	{
+		get
+		{
+			if (_metaDatas == null)
+			{
+				LoadRes();
+			}
+
+			return _metaDatas;
 		}
 	}
 
@@ -87,38 +86,37 @@ public static class CocoResMgr
 		var ta = AssetDatabase.LoadAssetAtPath<TextAsset>(resDir + "characters2_pak.json");
 		_cocoPackage = JsonMapper.ToObject<CocoPackage>(ta.text);
 
-		_spriteMetas = new Dictionary<int, CocoSpritaMeta>();
+		_metaDatas = new Dictionary<int, CocoMetaData>();
 		foreach (var spritaMeta in _cocoPackage.sprites)
 		{
-			_spriteMetas.Add(spritaMeta.id, spritaMeta);
+			_metaDatas.Add(spritaMeta.id, spritaMeta);
 		}
-		_allSpriteMeshes = new Dictionary<int, Mesh>(_spriteMetas.Count);
+		_allSpriteMeshes = new Dictionary<int, Mesh>(_metaDatas.Count);
+
+		foreach (var animMeta in _cocoPackage.animations)
+		{
+			_metaDatas.Add(animMeta.id, animMeta);
+		}
 
 		//加载所有Sprite
-		//_allSprites = new Dictionary<int, Sprite>();
 		_textures = new List<Texture2D>();
+		_materials = new List<Material>();
+		var spriteMat = Resources.Load<Material>("spriteMat");
 		string[] files = { "characters21.png", "characters22.png", "characters23.png", "characters24.png" };
 		foreach (var file in files)
 		{
 			var tex = AssetDatabase.LoadAssetAtPath<Texture2D>(resDir + file);
 			_textures.Add(tex);
-
-			//var objs = AssetDatabase.LoadAllAssetRepresentationsAtPath(resDir + file);
-			//foreach (var o in objs)
-			//{
-			//	var sprite = o as Sprite;
-			//	if (sprite != null)
-			//	{
-			//		int id = int.Parse(sprite.name.Replace("pic_", ""));
-			//		_allSprites.Add(id, sprite);
-			//	}
-			//}
+			var mat = Object.Instantiate(spriteMat);
+			mat.mainTexture = tex;
+			_materials.Add(mat);
 		}
 	}
 
-	public static CocoAnimMeta GetAnimMeta(int index)
+	public static CocoAnimMeta GetAnimMeta(int id)
 	{
-		return AnimationList[index];
+		var meta = GetMetaData(id);
+		return meta as CocoAnimMeta;
 	}
 
 	public static CocoAnimMeta GetAnimMetaByName(string name)
@@ -135,24 +133,27 @@ public static class CocoResMgr
 		return null;
 	}
 
-	public static Sprite GetSprite(int id)
+	public static CocoMetaData GetMetaData(int id)
 	{
-		return null;
-		//Sprite sprite;
-		//SpriteDic.TryGetValue(id, out sprite);
-		//return sprite;
+		CocoMetaData meta;
+		MetaDatas.TryGetValue(id, out meta);
+		return meta;
 	}
 
 	public static CocoSpritaMeta GetSpriteMeta(int id)
 	{
-		CocoSpritaMeta meta;
-		SpriteMetas.TryGetValue(id, out meta);
-		return meta;
+		var meta = GetMetaData(id);
+		return meta as CocoSpritaMeta;
 	}
 
 	public static Texture2D GetTexture(int texId)
 	{
 		return SpriteTextures[texId];
+	}
+
+	public static Material GetMaterial(int texId)
+	{
+		return SpriteMaterials[texId];
 	}
 
 	public static void CacheSpriteMesh(int spriteId, Mesh mesh)
