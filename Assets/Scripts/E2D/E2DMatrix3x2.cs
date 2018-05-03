@@ -85,9 +85,9 @@ public struct E2DMatrix3x2
 	public static Vector3 ExtractTranslationFromMatrix(ref Matrix4x4 matrix)
 	{
 		Vector3 translate;
-		translate.x = matrix.m03 / 100f;
-		translate.y = matrix.m13 / 100f;
-		translate.z = matrix.m23 / 100f;
+		translate.x = matrix.m03;
+		translate.y = matrix.m13;
+		translate.z = matrix.m23;
 		return translate;
 	}
 

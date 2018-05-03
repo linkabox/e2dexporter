@@ -5,3 +5,5 @@
 /obj
 /Temp
 /.vs
+/Assets/coco_res/*.png
+/Assets/coco_res/*.png.meta

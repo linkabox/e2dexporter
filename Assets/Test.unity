@@ -113,6 +113,98 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &630046662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 630046664}
+  - component: {fileID: 630046663}
+  m_Layer: 0
+  m_Name: CocoAnimator (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &630046663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 630046662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c768dfb7ded344fbe850e9722dcbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePrefab: {fileID: 1376240848812292, guid: 6797bd890d059ed489ae6f1baf966709,
+    type: 2}
+  anim_name: xueying_ghosttype_attack_1
+  fps: 30
+  timer: 0
+  curFrame: 0
+--- !u!4 &630046664
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 630046662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1301387115
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4641732120579568, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641732120579568, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641732120579568, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641732120579568, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641732120579568, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641732120579568, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641732120579568, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641732120579568, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376240848812292, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6797bd890d059ed489ae6f1baf966709, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1862006801
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,11 +232,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c768dfb7ded344fbe850e9722dcbdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spritePrefab: {fileID: 1185213689777438, guid: c57c93f33b4f78f46b34dbf771b91c87,
+  spritePrefab: {fileID: 1376240848812292, guid: 6797bd890d059ed489ae6f1baf966709,
     type: 2}
   anim_name: 2003daoke1_attack1_1
   fps: 30
-  sprites: []
   timer: 0
   curFrame: 0
 --- !u!4 &1862006803

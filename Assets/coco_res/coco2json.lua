@@ -58,8 +58,8 @@ for _,v in ipairs(types) do
       sprite.id = arg.id
       sprite.name = "pic_"..arg.id
       sprite.texId = arg[1].tex
-      sprite.src = to_rect(arg[1].src)
-      sprite.screen = to_rect(arg[1].screen)
+      sprite.src = arg[1].src--to_rect(arg[1].src)
+      sprite.screen = arg[1].screen--to_rect(arg[1].screen)
       table.insert(meta.sprites,sprite)
     elseif v == "animation" then
       anim_ids[arg.id] = true
@@ -104,7 +104,13 @@ load(data,"coco","t",env)()
 --local json_data = json:encode_pretty(meta)
 --print(json_data)
 --writeAll(coco_file.."_json.json",json_data)
-
+for _,v in ipairs(meta.animations) do
+  for i,comId in ipairs(v.components) do
+      if anim_ids[comId] then
+        print(v.name,"com index:"..i,comId)
+      end
+  end
+end
 
 local json_data = json:encode_pretty(meta)
 --print(json_data)

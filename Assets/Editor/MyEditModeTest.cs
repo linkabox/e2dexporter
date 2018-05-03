@@ -34,7 +34,7 @@ public class MyEditModeTest
 	public void LoadCocoData()
 	{
 		var ta = Selection.activeObject as TextAsset;
-		if (ta == null || !ta.name.EndsWith("_json"))
+		if (ta == null)
 		{
 			Debug.Log("Please select coco2json config!");
 			return;
@@ -85,7 +85,7 @@ public class MyEditModeTest
 			var sm = new SpriteMetaData
 			{
 				name = cocoSpriteMeta.name,
-				rect = cocoSpriteMeta.src
+				//rect = cocoSpriteMeta.src
 			};
 			textureSpriteMetas[cocoSpriteMeta.texId].Add(sm);
 		}
@@ -223,7 +223,7 @@ public class MyEditModeTest
 		if (ta == null) return;
 
 		Debug.Log(ta.name);
-		var table = JsonMapper.ToObject<List<CocoSpriteMeta>>(ta.text);
+		var table = JsonMapper.ToObject<List<TestSpriteMeta>>(ta.text);
 
 		var importer = (TextureImporter)AssetImporter.GetAtPath("Assets/coco_res/" + ta.name + ".png");
 		importer.textureType = TextureImporterType.Sprite;
@@ -288,7 +288,7 @@ public class MyEditModeTest
 	}
 }
 
-public class CocoSpriteMeta
+public class TestSpriteMeta
 {
 	public string name;
 	public int x;
