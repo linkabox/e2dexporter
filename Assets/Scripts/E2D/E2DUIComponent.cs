@@ -7,9 +7,27 @@ public abstract class E2DUIComponent : E2DComponent
 	public RectTransform node;
 	public bool ignoreFrame;
 
+	public static readonly Vector2 PivotCenter = new Vector2(0.5f, 0.5f);
 	public Vector3 e2dPos
 	{
-		get { return root.InverseTransformPoint(node.position); }
+		get
+		{
+			Vector3 result = Vector3.zero;
+			if (node.pivot != PivotCenter)
+			{
+				var rawPivot = node.pivot;
+				node.SetPivot(PivotCenter);
+				result = root.InverseTransformPoint(node.position);
+				node.SetPivot(rawPivot);
+				Debug.LogError("Pivot Error:" + node.name + " ," + rawPivot);
+			}
+			else
+			{
+				result = root.InverseTransformPoint(node.position);
+			}
+
+			return result;
+		}
 	}
 
 	public Quaternion e2dRot
