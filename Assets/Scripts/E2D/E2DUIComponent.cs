@@ -12,6 +12,19 @@ public abstract class E2DUIComponent : E2DComponent
 		get { return root.InverseTransformPoint(node.position); }
 	}
 
+	public Quaternion e2dRot
+	{
+		get
+		{
+			return Quaternion.Euler(0, 0, node.eulerAngles.z);
+		}
+	}
+
+	public Vector3 e2dScale
+	{
+		get { return node.lossyScale; }
+	}
+
 	public virtual string ExportCom()
 	{
 		string name = E2DHelper.PrintNodePath(node, root, false);

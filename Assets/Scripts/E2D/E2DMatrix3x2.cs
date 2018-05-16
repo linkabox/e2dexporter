@@ -41,30 +41,38 @@ public struct E2DMatrix3x2
 
 	public static E2DMatrix3x2 FromE2DImage(E2DUIComponent com, E2DSprite e2DSprite)
 	{
-		var mat4x4 = Matrix4x4.TRS(com.e2dPos, com.node.rotation, com.node.lossyScale);
-		var scale = Matrix4x4.Scale(new Vector3(com.node.sizeDelta.x / e2DSprite.w, com.node.sizeDelta.y / e2DSprite.h, 1));
-		var mat = new E2DMatrix3x2(mat4x4 * scale);
-		return mat;
+		//根据图片组件的sizeDelta和scale计算最终缩放值
+		var finalScale = new Vector3(com.node.sizeDelta.x / e2DSprite.w * com.e2dScale.x,
+									 com.node.sizeDelta.y / e2DSprite.h * com.e2dScale.y, 1);
+		return FromTRS(com.e2dPos, com.e2dRot, finalScale);
 	}
 
 	public static E2DMatrix3x2 FromUICom(E2DUIComponent com)
 	{
-		var mat4x4 = Matrix4x4.TRS(com.e2dPos, com.node.rotation, com.node.lossyScale);
-		return new E2DMatrix3x2(mat4x4);
+		return FromTRS(com.e2dPos, com.e2dRot, com.e2dScale);
 	}
 
 	public static E2DMatrix3x2 FromText(E2DUIComponent com)
 	{
-		var fixPos = new Vector3(-com.node.sizeDelta.x * com.node.lossyScale.x / 2, com.node.sizeDelta.y * com.node.lossyScale.y / 2, 0);
-		fixPos = com.node.rotation * fixPos;
-		var mat4x4 = Matrix4x4.TRS(com.e2dPos + fixPos, com.node.rotation, com.node.lossyScale);
-		return new E2DMatrix3x2(mat4x4);
+		var fixPos = new Vector3(-com.node.sizeDelta.x * com.e2dScale.x / 2, com.node.sizeDelta.y * com.e2dScale.y / 2, 0);
+		fixPos = com.e2dRot * fixPos;
+		return FromTRS(com.e2dPos + fixPos, com.e2dRot, com.e2dScale);
+	}
+
+	public static E2DMatrix3x2 FromClip(E2DUIComponent com)
+	{
+		var fixPos = new Vector3(-com.node.sizeDelta.x * com.e2dScale.x / 2, com.node.sizeDelta.y * com.e2dScale.y / 2, 0);
+		return FromTRS(com.e2dPos + fixPos, com.e2dRot, com.e2dScale);
 	}
 
 	public static E2DMatrix3x2 FromTRS(Vector3 pos, Quaternion rot, Vector3 scale)
 	{
-		var mat4x4 = Matrix4x4.TRS(pos, rot, scale);
-		return new E2DMatrix3x2(mat4x4);
+		var scaleMat = Matrix4x4.Scale(scale);
+		var rotMat = Matrix4x4.Rotate(rot);
+		var transMat = Matrix4x4.Translate(pos);
+		var finalMat = transMat * scaleMat * rotMat;
+
+		return new E2DMatrix3x2(finalMat);
 	}
 
 	public override string ToString()
