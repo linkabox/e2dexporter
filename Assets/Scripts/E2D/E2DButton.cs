@@ -19,13 +19,13 @@ public class E2DButton : E2DUIComponent
 	public override string ExportFrame(int index)
 	{
 		string extraStr;
-		if (btn.colors.normalColor == Color.white)
+		if (btn.image.color == Color.white)
 		{
 			extraStr = "";
 		}
 		else
 		{
-			extraStr = string.Format(" color={0}", btn.colors.normalColor.ToBGRA());
+			extraStr = string.Format(" color={0}", btn.image.color.ToBGRA());
 		}
 
 		var mat = E2DMatrix3x2.FromE2DImage(this, this.e2DSprite);

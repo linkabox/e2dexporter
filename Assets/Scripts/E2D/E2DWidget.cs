@@ -140,6 +140,9 @@ public class E2DWidget : E2DUIComponent
 	/// <param name="root"></param>
 	private void ParseComponent(RectTransform node, RectTransform root)
 	{
+		//@前缀的忽略导出
+		if (node.IsUnExportNode()) return;
+
 		var nestedPrefab = node.GetComponent<NestedPrefab>();
 		if (nestedPrefab != null)
 		{
@@ -170,7 +173,7 @@ public class E2DWidget : E2DUIComponent
 				}
 				else
 				{
-					Debug.LogError("该按钮图片没有引用图集内资源");
+					Debug.LogError("该按钮图片没有引用图集内资源：" + E2DHelper.PrintNodePath(node, root));
 				}
 			}
 			else
@@ -206,6 +209,15 @@ public class E2DWidget : E2DUIComponent
 			}
 		}
 
+		var rawImage = node.GetComponent<RawImage>();
+		if (rawImage != null && rawImage.texture != null)
+		{
+			isAnchor = false;
+			var e2DRawImage = new E2DRawImage(rawImage, this, root);
+			this.components.Add(e2DRawImage);
+			E2DPackage.active.AddRawTexture(rawImage.texture);
+		}
+
 		var text = node.GetComponent<Text>();
 		if (text != null)
 		{
@@ -222,10 +234,29 @@ public class E2DWidget : E2DUIComponent
 			this.components.Add(e2dPanel);
 		}
 
-		if (isAnchor && node != root && node.childCount == 0)
+		var gridLayoutGroup = node.GetComponent<GridLayoutGroup>();
+		if (gridLayoutGroup != null)
 		{
-			var e2dAnchor = new E2DAnchor(node, root);
-			this.components.Add(e2dAnchor);
+			LayoutRebuilder.ForceRebuildLayoutImmediate(node);
+		}
+
+		if (isAnchor && node != root)
+		{
+			int childCount = node.childCount;
+			for (int i = 0; i < node.childCount; i++)
+			{
+				var child = node.GetChild(i);
+				if (child.IsUnExportNode())
+				{
+					childCount -= 1;
+				}
+			}
+
+			if (childCount == 0)
+			{
+				var e2dAnchor = new E2DAnchor(node, root);
+				this.components.Add(e2dAnchor);
+			}
 		}
 
 		//遍历其子节点

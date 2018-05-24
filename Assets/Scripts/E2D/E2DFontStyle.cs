@@ -80,7 +80,7 @@ public class E2DFontStyle : E2DComponent
 		}
 		else
 		{
-			sb.AppendFormat("\ttext_id = {0},\n", 1);
+			//sb.AppendFormat("\ttext_id = {0},\n", 1);
 		}
 		sb.AppendLine("}");
 		return sb.ToString();

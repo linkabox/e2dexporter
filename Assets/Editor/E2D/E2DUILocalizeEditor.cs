@@ -102,6 +102,8 @@ public class E2DUILocalizeEditor : Editor
 			if (GUILayout.Button("ReloadCsv"))
 			{
 				E2DLocalization.LoadCsv();
+				//Reload必须重新保存一下，因为key的排序已经改变了
+				E2DLocalization.SaveCsv();
 				Rebuild();
 				Repaint();
 				return;

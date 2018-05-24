@@ -212,6 +212,8 @@ public static class E2DLocalization
 		for (var i = 0; i < lines.Length; i++)
 		{
 			var line = lines[i];
+			if (string.IsNullOrEmpty(line)) continue;
+
 			var cols = line.Split(',');
 			if (i == 0)
 			{
@@ -224,11 +226,18 @@ public static class E2DLocalization
 			else
 			{
 				string key = cols[0];
-				var langs = new string[_langs.Length];
-				_langMap.Add(key, langs);
-				for (int j = 1; j < cols.Length; j++)
+				if (!string.IsNullOrEmpty(key))
 				{
-					langs[j - 1] = cols[j];
+					var langs = new string[_langs.Length];
+					_langMap.Add(key, langs);
+					for (int j = 1; j < cols.Length; j++)
+					{
+						langs[j - 1] = cols[j];
+					}
+				}
+				else
+				{
+					Debug.LogError("发现key为空字符串，row:" + (i + 1));
 				}
 			}
 		}

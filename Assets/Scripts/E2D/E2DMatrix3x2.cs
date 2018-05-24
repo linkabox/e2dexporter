@@ -47,6 +47,14 @@ public struct E2DMatrix3x2
 		return FromTRS(com.e2dPos, com.e2dRot, finalScale);
 	}
 
+	public static E2DMatrix3x2 FromE2DRawImage(E2DUIComponent com, Texture rawTex)
+	{
+		//根据图片组件的sizeDelta和scale计算最终缩放值
+		var finalScale = new Vector3(com.node.sizeDelta.x / rawTex.width * com.e2dScale.x,
+			com.node.sizeDelta.y / rawTex.height * com.e2dScale.y, 1);
+		return FromTRS(com.e2dPos, com.e2dRot, finalScale);
+	}
+
 	public static E2DMatrix3x2 FromUICom(E2DUIComponent com)
 	{
 		return FromTRS(com.e2dPos, com.e2dRot, com.e2dScale);
@@ -78,74 +86,5 @@ public struct E2DMatrix3x2
 	public override string ToString()
 	{
 		return string.Format("{{{0}, {1}, {2}, {3}, {4}, {5}}}", m00, m01, m10, m11, m20, m21);
-	}
-
-	public Matrix4x4 ToMatrix4x4()
-	{
-		var mat = new Matrix4x4();
-		mat.SetColumn(0, new Vector4(this.m00 / 1024.0f, this.m10 / 1024.0f, 0, 0));
-		mat.SetColumn(1, new Vector4(this.m01 / 1024.0f, this.m11 / 1024.0f, 0, 0));
-		mat.SetColumn(2, new Vector4(0, 0, 1, 0));
-		mat.SetColumn(3, new Vector4(this.m20 / 16f, -this.m21 / 16.0f, 0, 1));
-		return mat;
-	}
-
-	public static Vector3 ExtractTranslationFromMatrix(ref Matrix4x4 matrix)
-	{
-		Vector3 translate;
-		translate.x = matrix.m03;
-		translate.y = matrix.m13;
-		translate.z = matrix.m23;
-		return translate;
-	}
-
-	public static Quaternion ExtractRotationFromMatrix(ref Matrix4x4 matrix)
-	{
-		Vector3 forward;
-		forward.x = matrix.m02;
-		forward.y = matrix.m12;
-		forward.z = matrix.m22;
-
-		Vector3 upwards;
-		upwards.x = matrix.m01;
-		upwards.y = matrix.m11;
-		upwards.z = matrix.m21;
-
-		return Quaternion.LookRotation(forward, upwards);
-	}
-
-	public static Vector3 ExtractScaleFromMatrix(ref Matrix4x4 matrix)
-	{
-		Vector3 scale;
-		scale.x = new Vector4(matrix.m00, matrix.m10, matrix.m20, matrix.m30).magnitude;
-		scale.y = new Vector4(matrix.m01, matrix.m11, matrix.m21, matrix.m31).magnitude;
-		scale.z = new Vector4(matrix.m02, matrix.m12, matrix.m22, matrix.m32).magnitude;
-		return scale;
-	}
-
-	public static void SetTransformFromMatrix(Transform transform, ref Matrix4x4 matrix)
-	{
-		transform.localPosition = ExtractTranslationFromMatrix(ref matrix);
-		transform.localRotation = ExtractRotationFromMatrix(ref matrix);
-		transform.localScale = ExtractScaleFromMatrix(ref matrix);
-	}
-
-	public static void SetTransformFromMatrix(Transform transform, float[] mat23)
-	{
-		var matrix = ToMatrix4x4(mat23);
-		transform.localPosition = ExtractTranslationFromMatrix(ref matrix);
-		transform.localRotation = ExtractRotationFromMatrix(ref matrix);
-		transform.localScale = ExtractScaleFromMatrix(ref matrix);
-	}
-
-	public static Matrix4x4 ToMatrix4x4(float[] mat23, float z = 0)
-	{
-		Matrix4x4 mat = new Matrix4x4();
-		mat.SetColumn(0, new Vector4(mat23[0] / 1024.0f, mat23[2] / 1024.0f, 0, 0));
-		mat.SetColumn(1, new Vector4(mat23[1] / 1024.0f, mat23[3] / 1024.0f, 0, 0));
-		mat.SetColumn(2, new Vector4(0, 0, 1, 0));
-		mat.SetColumn(3, new Vector4(mat23[4] / 16, -mat23[5] / 16.0f, z, 1));
-
-		return mat;
 	}
 }

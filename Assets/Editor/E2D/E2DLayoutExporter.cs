@@ -16,7 +16,7 @@ public class E2DLayoutExporter : EditorWindow
 
 	private E2DExporterData data;
 
-	[MenuItem("Window/E2DLayoutExporter &#u")]
+	[MenuItem("E2D/E2DLayoutExporter &#u")]
 	static void Init()
 	{
 		if (instance != null)
@@ -93,7 +93,7 @@ public class E2DLayoutExporter : EditorWindow
 			if (prefab.activeSelf)
 			{
 				GameObject instGo = Instantiate(prefab, E2DLocalization.E2DUIRoot.transform);
-				Transform instTrans = instGo.transform;
+				var instTrans = instGo.transform as RectTransform;
 				if (instTrans.localScale != Vector3.one)
 				{
 					Debug.LogErrorFormat("根节点Scale{0}不符合要求: {1}", instTrans.localScale, prefab.name);
@@ -101,11 +101,10 @@ public class E2DLayoutExporter : EditorWindow
 					instTrans.localScale = Vector3.one;
 				}
 
-				if (instTrans.localPosition != Vector3.zero)
+				if (instTrans.anchoredPosition != Vector2.zero)
 				{
-					Debug.LogErrorFormat("根节点Pos{0}不符合要求: {1}", instTrans.localPosition, prefab.name);
-					prefab.transform.localPosition = Vector3.zero;
-					instTrans.localPosition = Vector3.zero;
+					Debug.LogErrorFormat("根节点Pos{0}不符合要求: {1}", instTrans.anchoredPosition, prefab.name);
+					instTrans.anchoredPosition = Vector3.zero;
 				}
 
 				instGo.name = prefab.name;
@@ -146,7 +145,19 @@ public class E2DLayoutExporter : EditorWindow
 				string source = AssetDatabase.GetAssetPath(e2dPackage.textures[i]);
 				string dest = Path.Combine(exportDir, e2dPackage.name + (i + 1) + ".png");
 				FileUtil.ReplaceFile(source, dest);
-				logger.AppendLine("Export Texture:" + dest);
+				logger.AppendLine("Export AtlasTexture:" + dest);
+			}
+
+			foreach (var texture in e2dPackage.rawImageSet)
+			{
+				string source = AssetDatabase.GetAssetPath(texture);
+				string dest = Path.Combine(exportDir, texture.name + ".png");
+				if (!File.Exists(dest))
+				{
+					FileUtil.ReplaceFile(source, dest);
+					logger.AppendLine("Export RawTexture:" + dest);
+					Process.Start("premultiply_alpha.bat", dest);
+				}
 			}
 		}
 

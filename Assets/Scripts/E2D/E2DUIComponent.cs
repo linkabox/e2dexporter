@@ -19,7 +19,7 @@ public abstract class E2DUIComponent : E2DComponent
 				node.SetPivot(PivotCenter);
 				result = root.InverseTransformPoint(node.position);
 				node.SetPivot(rawPivot);
-				Debug.LogError("Pivot Error:" + node.name + " ," + rawPivot);
+				//Debug.LogError("Pivot Error:" + node.name + " ," + rawPivot);
 			}
 			else
 			{

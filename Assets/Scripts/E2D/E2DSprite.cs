@@ -11,8 +11,11 @@ public class E2DSprite : E2DComponent
 	public int w;
 	public int h;
 
-	public E2DSprite(Sprite sprite, List<Texture2D> textures)
+	public bool export;
+
+	public E2DSprite(Sprite sprite, List<Texture2D> textures, bool export)
 	{
+		this.export = export;
 		this.name = sprite.name;
 		var atlasTex = sprite.texture;
 		this.texId = textures.IndexOf(atlasTex);
@@ -58,6 +61,10 @@ public class E2DSprite : E2DComponent
 		var sb = new StringBuilder();
 		sb.AppendLine("picture {");
 		sb.AppendFormat("\tid = {0},\n", this.id);
+		if (export)
+		{
+			sb.AppendFormat("\texport = \"{0}\",\n", this.name);
+		}
 		sb.AppendFormat("\t{{ tex = {0},", this.texId);
 		sb.AppendFormat(" src = {{{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}}},", src[0], src[1], src[2], src[3], src[4], src[5], src[6], src[7]);
 		sb.AppendFormat(" screen = {{{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}}}", screen[0], screen[1], screen[2], screen[3], screen[4], screen[5], screen[6], screen[7]);

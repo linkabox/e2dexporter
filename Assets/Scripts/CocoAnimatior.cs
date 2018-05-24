@@ -115,8 +115,8 @@ public class CocoAnimatior : CocoRenderer
 			var ft = frameTrans[i];
 			var renderer = _cocoRenderers[ft.index];
 			renderer.SetActive(true);
-			var mat = E2DMatrix3x2.ToMatrix4x4(ft.mat, -i * 1.0f);
-			E2DMatrix3x2.SetTransformFromMatrix(renderer.transform, ref mat);
+			var mat = CocoMatrix3x2.ToMatrix4x4(ft.mat, -i * 1.0f);
+			CocoMatrix3x2.SetTransformFromMatrix(renderer.transform, ref mat);
 		}
 	}
 

@@ -25,14 +25,14 @@ public class E2DImage : E2DUIComponent
 		}
 		else
 		{
-			extraStr = string.Format(" color={0}", image.color.ToBGRA());
+			extraStr = string.Format(", color={0}", image.color.ToBGRA());
 		}
 
 		E2DSprite e2DSprite;
 		if (E2DPackage.active.spriteRefMap.TryGetValue(this.image.sprite, out e2DSprite))
 		{
 			var mat = E2DMatrix3x2.FromE2DImage(this, e2DSprite);
-			return string.Format("{{index = {0}, mat = {1},{2}}},\n", container.spriteIndexMap[this.image][this.image.sprite], mat, extraStr);
+			return string.Format("{{index = {0}, mat = {1}{2}}},\n", container.spriteIndexMap[this.image][this.image.sprite], mat, extraStr);
 		}
 		else
 		{

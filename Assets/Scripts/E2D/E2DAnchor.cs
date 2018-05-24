@@ -12,8 +12,9 @@ public class E2DAnchor : E2DUIComponent
 
 	public override string ExportCom()
 	{
+		string name = E2DHelper.PrintNodePath(node, root, false);
 		//没有指定id只有name字段的时候会被当作是一个Anchor
-		return string.Format("\t\t{{name = \"{0}\"}},\n", this.name);
+		return string.Format("\t\t{{name = \"{0}\"}},\n", name);
 	}
 
 	public override string ExportFrame(int index)
