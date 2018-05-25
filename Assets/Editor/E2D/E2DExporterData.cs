@@ -33,14 +33,21 @@ public class E2DExporterData : ScriptableObject
 		EditorGUILayout.EndHorizontal();
 
 		EditorGUILayout.Space();
-		if (GUILayout.Button("Build All", GUILayout.Height(50)))
+		GUI.color = Color.red;
+		if (GUILayout.Button("Force Build All", GUILayout.Height(50)))
 		{
-			E2DLayoutExporter.Export(package, textures, uiPrefabFolder, exportFolder, false);
+			E2DLayoutExporter.Export(package, textures, uiPrefabFolder, exportFolder, E2DLayoutExporter.BUILD_FORCE_ALL);
+		}
+		GUI.color = Color.white;
+
+		if (GUILayout.Button("Build Default", GUILayout.Height(50)))
+		{
+			E2DLayoutExporter.Export(package, textures, uiPrefabFolder, exportFolder, E2DLayoutExporter.BUILD_DEFAULT);
 		}
 
 		if (GUILayout.Button("Build Config", GUILayout.Height(50)))
 		{
-			E2DLayoutExporter.Export(package, textures, uiPrefabFolder, exportFolder, true);
+			E2DLayoutExporter.Export(package, textures, uiPrefabFolder, exportFolder, E2DLayoutExporter.BUILD_CONFIG);
 		}
 
 		_target.ApplyModifiedProperties();

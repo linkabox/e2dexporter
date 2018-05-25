@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -7,6 +8,26 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.U2D;
 using Debug = UnityEngine.Debug;
+
+public class E2DAssetImporter : AssetPostprocessor
+{
+	private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
+	{
+		foreach (string path in importedAssets)
+		{
+			if (Path.GetExtension(path).Equals(".tpsheet"))
+			{
+				Debug.Log("Set <tpsheet> update flag:" + path);
+				EditorPrefs.SetBool("E2D_" + Path.GetFileNameWithoutExtension(path), true);
+			}
+			else if (path.Contains("UI/RawImages"))
+			{
+				Debug.Log("Set <rawImage> update flag:" + path);
+				EditorPrefs.SetBool("E2D_" + Path.GetFileNameWithoutExtension(path), true);
+			}
+		}
+	}
+}
 
 public class E2DLayoutExporter : EditorWindow
 {
@@ -54,7 +75,10 @@ public class E2DLayoutExporter : EditorWindow
 			data.OnGUI();
 	}
 
-	public static void Export(string package, Texture2D[] uiAtlas, DefaultAsset prefabFolder, string exportDir, bool onlyConfig)
+	public const int BUILD_DEFAULT = 0;         //默认模式，图集和rawimage未变更不重新导出
+	public const int BUILD_CONFIG = 1;          //仅重新生成coco配置，不对贴图进行处理
+	public const int BUILD_FORCE_ALL = 1;       //强制Build所有资源
+	public static void Export(string package, Texture2D[] uiAtlas, DefaultAsset prefabFolder, string exportDir, int mode)
 	{
 		if (uiAtlas == null)
 		{
@@ -137,23 +161,33 @@ public class E2DLayoutExporter : EditorWindow
 		FileUtil.ReplaceFile(E2DLocalization.LangPath, langDest);
 		logger.AppendLine("Export Lang csv:" + langDest);
 
-		if (!onlyConfig)
+		bool forceRefresh = mode == BUILD_FORCE_ALL;
+		if (mode != BUILD_CONFIG)
 		{
 			//导出图集打包后的贴图
 			for (var i = 0; i < e2dPackage.textures.Count; i++)
 			{
 				string source = AssetDatabase.GetAssetPath(e2dPackage.textures[i]);
-				string dest = Path.Combine(exportDir, e2dPackage.name + (i + 1) + ".png");
-				FileUtil.ReplaceFile(source, dest);
-				logger.AppendLine("Export AtlasTexture:" + dest);
+				string atlasName = Path.GetFileNameWithoutExtension(source);
+				string key = "E2D_" + atlasName;
+				if (forceRefresh || EditorPrefs.GetBool(key, true))
+				{
+					EditorPrefs.SetBool(key, false);
+					string dest = Path.Combine(exportDir, e2dPackage.name + (i + 1) + ".png");
+					FileUtil.ReplaceFile(source, dest);
+					logger.AppendLine("Export AtlasTexture:" + dest);
+					Process.Start("premultiply_alpha.bat", dest);
+				}
 			}
 
 			foreach (var texture in e2dPackage.rawImageSet)
 			{
 				string source = AssetDatabase.GetAssetPath(texture);
 				string dest = Path.Combine(exportDir, texture.name + ".png");
-				if (!File.Exists(dest))
+				string key = "E2D_" + texture.name;
+				if (forceRefresh || EditorPrefs.GetBool(key, true))
 				{
+					EditorPrefs.SetBool(key, false);
 					FileUtil.ReplaceFile(source, dest);
 					logger.AppendLine("Export RawTexture:" + dest);
 					Process.Start("premultiply_alpha.bat", dest);
