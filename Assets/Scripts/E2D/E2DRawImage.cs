@@ -13,7 +13,7 @@ public class E2DRawImage : E2DUIComponent
 		this.rawImage = rawImage;
 		//引用外部资源时ID为特定值
 		this.id = 0xFFFF - 1;
-		this.name = string.Format("{0}.png@{1}", rawImage.texture.name, rawImage.name);
+		this.name = string.Format("{0}/{1}.png@{2}", E2DPackage.RawImageDir, rawImage.texture.name, rawImage.name);
 		this.container = container;
 	}
 

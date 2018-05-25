@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class E2DPackage
 {
+	public const string RawImageDir = "raw_images";
 	public static E2DPackage active;
 
 	//只有在注册列表中的组件才会被导出到配置

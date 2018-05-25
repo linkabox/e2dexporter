@@ -180,10 +180,11 @@ public class E2DLayoutExporter : EditorWindow
 				}
 			}
 
+			Directory.CreateDirectory(exportDir + "/" + E2DPackage.RawImageDir);
 			foreach (var texture in e2dPackage.rawImageSet)
 			{
 				string source = AssetDatabase.GetAssetPath(texture);
-				string dest = Path.Combine(exportDir, texture.name + ".png");
+				string dest = Path.Combine(exportDir + "/" + E2DPackage.RawImageDir, texture.name + ".png");
 				string key = "E2D_" + texture.name;
 				if (forceRefresh || EditorPrefs.GetBool(key, true))
 				{
