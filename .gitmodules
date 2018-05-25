@@ -1,0 +1,3 @@
+[submodule "flash-parser"]
+	path = flash-parser
+	url = https://github.com/linkabox/flash-parser.git
