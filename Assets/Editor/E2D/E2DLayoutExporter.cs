@@ -77,7 +77,7 @@ public class E2DLayoutExporter : EditorWindow
 
 	public const int BUILD_DEFAULT = 0;         //默认模式，图集和rawimage未变更不重新导出
 	public const int BUILD_CONFIG = 1;          //仅重新生成coco配置，不对贴图进行处理
-	public const int BUILD_FORCE_ALL = 1;       //强制Build所有资源
+	public const int BUILD_FORCE_ALL = 2;       //强制Build所有资源
 	public static void Export(string package, Texture2D[] uiAtlas, DefaultAsset prefabFolder, string exportDir, int mode)
 	{
 		if (uiAtlas == null)
