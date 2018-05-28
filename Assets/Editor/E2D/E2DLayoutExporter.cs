@@ -149,6 +149,28 @@ public class E2DLayoutExporter : EditorWindow
 		logger.AppendLine();
 		logger.AppendLine("=======================================");
 
+		prefabGUIDs = AssetDatabase.FindAssets("t:prefab", new[] { "Assets/UI/BitmapFonts" });
+		logger.AppendLine("Analyze BitmapFonts:" + prefabGUIDs.Length);
+
+		foreach (var uid in prefabGUIDs)
+		{
+			string prefabPath = AssetDatabase.GUIDToAssetPath(uid);
+			var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+			//Prefab根节点隐藏的忽略导出
+			if (prefab.activeSelf)
+			{
+				var e2dBitmapFont = prefab.GetComponent<E2DBitmapFont>();
+				if (e2dBitmapFont != null)
+				{
+					e2dPackage.RegisterCom(e2dBitmapFont);
+					logger.AppendLine("register:" + prefabPath);
+				}
+			}
+		}
+
+		logger.AppendLine();
+		logger.AppendLine("=======================================");
+
 		//生成coco配置
 		string cocoPath = Path.Combine(exportDir, e2dPackage.name + ".coco.bytes");
 		File.WriteAllText(cocoPath, e2dPackage.Export());

@@ -5,65 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using VisualDesignCafe.Editor.Prefabs;
 
-public class E2DPanel : E2DUIComponent
-{
-	public bool scissor;
-	public float width;
-	public float height;
-
-	public E2DPanel(RectTransform node, RectTransform root)
-	{
-		this.root = root;
-		this.node = node;
-		this.width = node.sizeDelta.x;
-		this.height = node.sizeDelta.y;
-		this.scissor = true;
-
-		this.name = node.name;   //当前节点名
-		E2DPackage.active.RegisterCom(this);
-	}
-
-	public override string ExportFrame(int index)
-	{
-		return string.Format("{{index = {0}, mat = {1}}},\n", index, E2DMatrix3x2.FromClip(this));
-	}
-
-	public override string Export()
-	{
-		var sb = new StringBuilder();
-		sb.AppendLine("pannel {");
-		sb.AppendFormat("\tid = {0},\n", this.id);
-		sb.AppendFormat("\tscissor = {0},\n", this.scissor.ToString().ToLower());
-		sb.AppendFormat("\twidth = {0}, height = {1},\n", this.width, this.height);
-		sb.AppendLine("}");
-		return sb.ToString();
-	}
-}
-
-public class E2DWidgetRef : E2DUIComponent
-{
-	public E2DWidget refWidget;
-
-	public E2DWidgetRef(E2DWidget widget, RectTransform node, RectTransform root)
-	{
-		this.root = root;
-		this.node = node;
-		this.id = -1;
-		this.refWidget = widget;
-		this.name = node.name;
-	}
-
-	public override string ExportCom()
-	{
-		return string.Format("\t\t{{id = {0}, name = \"{1}\"}},\n", this.refWidget.id, this.name);
-	}
-
-	public override string ExportFrame(int index)
-	{
-		return string.Format("{{index = {0}, mat = {1}}},\n", index, E2DMatrix3x2.FromUICom(this));
-	}
-}
-
 public class E2DWidget : E2DUIComponent
 {
 	public List<E2DUIComponent> components = new List<E2DUIComponent>();

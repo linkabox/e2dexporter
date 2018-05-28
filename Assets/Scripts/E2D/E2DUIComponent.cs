@@ -55,9 +55,4 @@ public abstract class E2DUIComponent : E2DComponent
 	//{
 	//	return string.Format("{{index = {0}, mat = {1}}},\n", index, E2DMatrix3x2.identity);
 	//}
-
-	public override string Export()
-	{
-		throw new System.NotImplementedException();
-	}
 }

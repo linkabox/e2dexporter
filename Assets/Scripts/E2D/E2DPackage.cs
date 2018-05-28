@@ -15,7 +15,7 @@ public class E2DPackage
 	public static E2DPackage active;
 
 	//只有在注册列表中的组件才会被导出到配置
-	public List<E2DComponent> registedComs = new List<E2DComponent>();
+	public List<IE2DExport> registedComs = new List<IE2DExport>();
 
 	//屏幕坐标缩放比例
 	public const int SCREEN_SCALE = 16;
@@ -130,7 +130,7 @@ public class E2DPackage
 		return newFont;
 	}
 
-	public int RegisterCom(E2DComponent com)
+	public int RegisterCom(IE2DExport com)
 	{
 		com.id = registedComs.Count;
 		registedComs.Add(com);
