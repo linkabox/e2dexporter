@@ -217,347 +217,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mahjong_1
-      rect:
-        serializedVersion: 2
-        x: 93
-        y: 503
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_2
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 509
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_3
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 422
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_4
-      rect:
-        serializedVersion: 2
-        x: 131
-        y: 367
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_5
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 305
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_6
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 234
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_7
-      rect:
-        serializedVersion: 2
-        x: 317
-        y: 456
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_8
-      rect:
-        serializedVersion: 2
-        x: 362
-        y: 456
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_9
-      rect:
-        serializedVersion: 2
-        x: 223
-        y: 403
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_10
-      rect:
-        serializedVersion: 2
-        x: 421
-        y: 641
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_11
-      rect:
-        serializedVersion: 2
-        x: 421
-        y: 575
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_12
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 535
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_13
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 535
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_14
-      rect:
-        serializedVersion: 2
-        x: 138
-        y: 499
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_15
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 437
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_16
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 432
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_17
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 366
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_18
-      rect:
-        serializedVersion: 2
-        x: 317
-        y: 522
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_19
-      rect:
-        serializedVersion: 2
-        x: 362
-        y: 522
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_20
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 469
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_21
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 469
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_22
-      rect:
-        serializedVersion: 2
-        x: 133
-        y: 433
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_23
-      rect:
-        serializedVersion: 2
-        x: 86
-        y: 371
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: mahjong_24
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 300
-        width: 43
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
       name: p1
       rect:
         serializedVersion: 2
         x: 1
-        y: 759
+        y: 586
         width: 157
         height: 202
       alignment: 0
@@ -570,36 +234,8 @@ TextureImporter:
       name: p2
       rect:
         serializedVersion: 2
-        x: 1004
-        y: 808
-        width: 19
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p3
-      rect:
-        serializedVersion: 2
-        x: 1004
-        y: 787
-        width: 19
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p4
-      rect:
-        serializedVersion: 2
-        x: 999
-        y: 652
+        x: 995
+        y: 714
         width: 19
         height: 19
       alignment: 0
@@ -612,66 +248,10 @@ TextureImporter:
       name: p5
       rect:
         serializedVersion: 2
-        x: 261
-        y: 715
+        x: 474
+        y: 739
         width: 97
         height: 97
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p6
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 942
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p7
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 927
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p8
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 912
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p9
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 897
-        width: 13
-        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -682,8 +262,8 @@ TextureImporter:
       name: p10
       rect:
         serializedVersion: 2
-        x: 884
-        y: 604
+        x: 263
+        y: 766
         width: 88
         height: 20
       alignment: 0
@@ -696,8 +276,8 @@ TextureImporter:
       name: p11
       rect:
         serializedVersion: 2
-        x: 1009
-        y: 850
+        x: 463
+        y: 946
         width: 12
         height: 9
       alignment: 0
@@ -710,8 +290,8 @@ TextureImporter:
       name: p12
       rect:
         serializedVersion: 2
-        x: 46
-        y: 298
+        x: 618
+        y: 790
         width: 32
         height: 32
       alignment: 0
@@ -724,8 +304,8 @@ TextureImporter:
       name: p13
       rect:
         serializedVersion: 2
-        x: 824
-        y: 756
+        x: 353
+        y: 795
         width: 70
         height: 52
       alignment: 0
@@ -738,8 +318,8 @@ TextureImporter:
       name: p14
       rect:
         serializedVersion: 2
-        x: 998
-        y: 628
+        x: 817
+        y: 917
         width: 25
         height: 22
       alignment: 0
@@ -752,8 +332,8 @@ TextureImporter:
       name: p15
       rect:
         serializedVersion: 2
-        x: 998
-        y: 604
+        x: 995
+        y: 735
         width: 25
         height: 22
       alignment: 0
@@ -766,8 +346,8 @@ TextureImporter:
       name: p16
       rect:
         serializedVersion: 2
-        x: 659
-        y: 823
+        x: 477
+        y: 875
         width: 173
         height: 74
       alignment: 0
@@ -780,8 +360,8 @@ TextureImporter:
       name: p17
       rect:
         serializedVersion: 2
-        x: 659
-        y: 752
+        x: 652
+        y: 832
         width: 163
         height: 69
       alignment: 0
@@ -794,8 +374,8 @@ TextureImporter:
       name: p18
       rect:
         serializedVersion: 2
-        x: 1
-        y: 525
+        x: 817
+        y: 813
         width: 85
         height: 25
       alignment: 0
@@ -808,8 +388,8 @@ TextureImporter:
       name: p19
       rect:
         serializedVersion: 2
-        x: 1
-        y: 498
+        x: 474
+        y: 712
         width: 85
         height: 25
       alignment: 0
@@ -836,8 +416,8 @@ TextureImporter:
       name: p21
       rect:
         serializedVersion: 2
-        x: 328
-        y: 588
+        x: 561
+        y: 695
         width: 85
         height: 25
       alignment: 0
@@ -850,8 +430,8 @@ TextureImporter:
       name: p22
       rect:
         serializedVersion: 2
-        x: 160
-        y: 819
+        x: 165
+        y: 921
         width: 100
         height: 40
       alignment: 0
@@ -864,8 +444,8 @@ TextureImporter:
       name: p23
       rect:
         serializedVersion: 2
-        x: 262
-        y: 814
+        x: 165
+        y: 879
         width: 100
         height: 40
       alignment: 0
@@ -906,8 +486,8 @@ TextureImporter:
       name: p26
       rect:
         serializedVersion: 2
-        x: 360
-        y: 730
+        x: 652
+        y: 809
         width: 93
         height: 21
       alignment: 0
@@ -920,8 +500,8 @@ TextureImporter:
       name: p27
       rect:
         serializedVersion: 2
-        x: 360
-        y: 707
+        x: 652
+        y: 786
         width: 93
         height: 21
       alignment: 0
@@ -934,8 +514,8 @@ TextureImporter:
       name: p28
       rect:
         serializedVersion: 2
-        x: 1
-        y: 736
+        x: 652
+        y: 763
         width: 93
         height: 21
       alignment: 0
@@ -976,8 +556,8 @@ TextureImporter:
       name: p32
       rect:
         serializedVersion: 2
-        x: 46
-        y: 453
+        x: 980
+        y: 622
         width: 40
         height: 43
       alignment: 0
@@ -990,8 +570,8 @@ TextureImporter:
       name: p33
       rect:
         serializedVersion: 2
-        x: 871
-        y: 525
+        x: 475
+        y: 838
         width: 143
         height: 21
       alignment: 0
@@ -1018,8 +598,8 @@ TextureImporter:
       name: p35
       rect:
         serializedVersion: 2
-        x: 93
-        y: 569
+        x: 428
+        y: 814
         width: 44
         height: 39
       alignment: 9
@@ -1032,8 +612,8 @@ TextureImporter:
       name: p36
       rect:
         serializedVersion: 2
-        x: 446
-        y: 846
+        x: 622
+        y: 824
         width: 28
         height: 49
       alignment: 9
@@ -1046,8 +626,8 @@ TextureImporter:
       name: p37
       rect:
         serializedVersion: 2
-        x: 659
-        y: 899
+        x: 744
+        y: 701
         width: 50
         height: 50
       alignment: 0
@@ -1060,8 +640,8 @@ TextureImporter:
       name: p38
       rect:
         serializedVersion: 2
-        x: 96
-        y: 707
+        x: 424
+        y: 736
         width: 48
         height: 50
       alignment: 9
@@ -1074,8 +654,8 @@ TextureImporter:
       name: p39
       rect:
         serializedVersion: 2
-        x: 176
-        y: 372
+        x: 573
+        y: 788
         width: 43
         height: 48
       alignment: 9
@@ -1088,8 +668,8 @@ TextureImporter:
       name: p40
       rect:
         serializedVersion: 2
-        x: 93
-        y: 658
+        x: 424
+        y: 687
         width: 48
         height: 47
       alignment: 9
@@ -1102,8 +682,8 @@ TextureImporter:
       name: p41
       rect:
         serializedVersion: 2
-        x: 93
-        y: 610
+        x: 428
+        y: 855
         width: 45
         height: 46
       alignment: 9
@@ -1116,8 +696,8 @@ TextureImporter:
       name: p42
       rect:
         serializedVersion: 2
-        x: 46
-        y: 403
+        x: 979
+        y: 572
         width: 38
         height: 48
       alignment: 9
@@ -1130,8 +710,8 @@ TextureImporter:
       name: p43
       rect:
         serializedVersion: 2
-        x: 183
-        y: 514
+        x: 573
+        y: 737
         width: 42
         height: 49
       alignment: 9
@@ -1144,8 +724,8 @@ TextureImporter:
       name: p44
       rect:
         serializedVersion: 2
-        x: 46
-        y: 332
+        x: 211
+        y: 733
         width: 35
         height: 43
       alignment: 9
@@ -1158,8 +738,8 @@ TextureImporter:
       name: p45
       rect:
         serializedVersion: 2
-        x: 140
-        y: 565
+        x: 817
+        y: 840
         width: 85
         height: 59
       alignment: 0
@@ -1172,8 +752,8 @@ TextureImporter:
       name: p46
       rect:
         serializedVersion: 2
-        x: 238
-        y: 601
+        x: 263
+        y: 788
         width: 88
         height: 59
       alignment: 0
@@ -1186,8 +766,8 @@ TextureImporter:
       name: p47
       rect:
         serializedVersion: 2
-        x: 1
-        y: 644
+        x: 652
+        y: 671
         width: 90
         height: 90
       alignment: 0
@@ -1200,8 +780,8 @@ TextureImporter:
       name: p48
       rect:
         serializedVersion: 2
-        x: 385
-        y: 753
+        x: 811
+        y: 720
         width: 90
         height: 91
       alignment: 0
@@ -1228,8 +808,8 @@ TextureImporter:
       name: p50
       rect:
         serializedVersion: 2
-        x: 160
-        y: 861
+        x: 904
+        y: 759
         width: 100
         height: 100
       alignment: 0
@@ -1242,8 +822,8 @@ TextureImporter:
       name: p51
       rect:
         serializedVersion: 2
-        x: 820
-        y: 592
+        x: 747
+        y: 753
         width: 62
         height: 34
       alignment: 0
@@ -1253,39 +833,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: p52
-      rect:
-        serializedVersion: 2
-        x: 1016
-        y: 997
-        width: 1
-        height: 1
-      alignment: 9
-      pivot: {x: 33, y: -21}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p53
-      rect:
-        serializedVersion: 2
-        x: 1016
-        y: 997
-        width: 1
-        height: 1
-      alignment: 9
-      pivot: {x: 33, y: -21}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
       name: p54
       rect:
         serializedVersion: 2
-        x: 834
-        y: 810
+        x: 747
+        y: 789
         width: 62
         height: 41
       alignment: 0
@@ -1298,8 +850,8 @@ TextureImporter:
       name: p55
       rect:
         serializedVersion: 2
-        x: 238
-        y: 662
+        x: 795
+        y: 600
         width: 89
         height: 26
       alignment: 0
@@ -1312,8 +864,8 @@ TextureImporter:
       name: p56
       rect:
         serializedVersion: 2
-        x: 824
-        y: 692
+        x: 353
+        y: 731
         width: 69
         height: 62
       alignment: 0
@@ -1326,8 +878,8 @@ TextureImporter:
       name: p57
       rect:
         serializedVersion: 2
-        x: 823
-        y: 628
+        x: 474
+        y: 648
         width: 69
         height: 62
       alignment: 0
@@ -1354,8 +906,8 @@ TextureImporter:
       name: p59
       rect:
         serializedVersion: 2
-        x: 820
-        y: 502
+        x: 744
+        y: 624
         width: 49
         height: 49
       alignment: 0
@@ -1368,8 +920,8 @@ TextureImporter:
       name: p60
       rect:
         serializedVersion: 2
-        x: 659
-        y: 633
+        x: 1
+        y: 844
         width: 159
         height: 52
       alignment: 0
@@ -1382,8 +934,8 @@ TextureImporter:
       name: p61
       rect:
         serializedVersion: 2
-        x: 659
-        y: 579
+        x: 267
+        y: 849
         width: 159
         height: 52
       alignment: 0
@@ -1396,8 +948,8 @@ TextureImporter:
       name: p62
       rect:
         serializedVersion: 2
-        x: 659
-        y: 525
+        x: 1
+        y: 790
         width: 159
         height: 52
       alignment: 0
@@ -1410,8 +962,8 @@ TextureImporter:
       name: p63
       rect:
         serializedVersion: 2
-        x: 902
-        y: 838
+        x: 709
+        y: 918
         width: 105
         height: 21
       alignment: 0
@@ -1438,80 +990,10 @@ TextureImporter:
       name: p65
       rect:
         serializedVersion: 2
-        x: 146
-        y: 626
+        x: 903
+        y: 667
         width: 90
         height: 90
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p66
-      rect:
-        serializedVersion: 2
-        x: 262
-        y: 856
-        width: 131
-        height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p67
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 752
-        width: 102
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p68
-      rect:
-        serializedVersion: 2
-        x: 895
-        y: 710
-        width: 102
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p69
-      rect:
-        serializedVersion: 2
-        x: 895
-        y: 668
-        width: 102
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p70
-      rect:
-        serializedVersion: 2
-        x: 894
-        y: 626
-        width: 102
-        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1522,8 +1004,8 @@ TextureImporter:
       name: p71
       rect:
         serializedVersion: 2
-        x: 46
-        y: 377
+        x: 425
+        y: 788
         width: 36
         height: 24
       alignment: 0
@@ -1536,8 +1018,8 @@ TextureImporter:
       name: p72
       rect:
         serializedVersion: 2
-        x: 183
-        y: 488
+        x: 979
+        y: 546
         width: 37
         height: 24
       alignment: 0
@@ -1550,8 +1032,8 @@ TextureImporter:
       name: p73
       rect:
         serializedVersion: 2
-        x: 820
-        y: 553
+        x: 744
+        y: 675
         width: 50
         height: 24
       alignment: 0
@@ -1568,62 +1050,6 @@ TextureImporter:
         y: 941
         width: 132
         height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p75
-      rect:
-        serializedVersion: 2
-        x: 711
-        y: 899
-        width: 132
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p76
-      rect:
-        serializedVersion: 2
-        x: 884
-        y: 562
-        width: 132
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p77
-      rect:
-        serializedVersion: 2
-        x: 871
-        y: 483
-        width: 132
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p78
-      rect:
-        serializedVersion: 2
-        x: 898
-        y: 794
-        width: 104
-        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1662,8 +1088,8 @@ TextureImporter:
       name: p81
       rect:
         serializedVersion: 2
-        x: 845
-        y: 853
+        x: 652
+        y: 903
         width: 55
         height: 46
       alignment: 0
@@ -1676,8 +1102,8 @@ TextureImporter:
       name: p82
       rect:
         serializedVersion: 2
-        x: 395
-        y: 852
+        x: 160
+        y: 727
         width: 49
         height: 49
       alignment: 0
@@ -1690,8 +1116,8 @@ TextureImporter:
       name: p83
       rect:
         serializedVersion: 2
-        x: 268
-        y: 435
+        x: 618
+        y: 756
         width: 32
         height: 32
       alignment: 0
@@ -1704,8 +1130,8 @@ TextureImporter:
       name: p84
       rect:
         serializedVersion: 2
-        x: 268
-        y: 435
+        x: 618
+        y: 756
         width: 32
         height: 32
       alignment: 0
@@ -1718,8 +1144,8 @@ TextureImporter:
       name: p85
       rect:
         serializedVersion: 2
-        x: 659
-        y: 687
+        x: 1
+        y: 898
         width: 162
         height: 63
       alignment: 0
@@ -1732,8 +1158,8 @@ TextureImporter:
       name: p86
       rect:
         serializedVersion: 2
-        x: 872
-        y: 548
+        x: 475
+        y: 861
         width: 145
         height: 12
       alignment: 0
@@ -1746,8 +1172,8 @@ TextureImporter:
       name: p87
       rect:
         serializedVersion: 2
-        x: 820
-        y: 579
+        x: 751
+        y: 909
         width: 53
         height: 6
       alignment: 0
@@ -1760,8 +1186,8 @@ TextureImporter:
       name: p88
       rect:
         serializedVersion: 2
-        x: 364
-        y: 844
+        x: 709
+        y: 905
         width: 19
         height: 10
       alignment: 0
@@ -1774,8 +1200,8 @@ TextureImporter:
       name: p89
       rect:
         serializedVersion: 2
-        x: 364
-        y: 832
+        x: 730
+        y: 905
         width: 19
         height: 10
       alignment: 0
@@ -1799,109 +1225,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
-      name: p91
-      rect:
-        serializedVersion: 2
-        x: 820
-        y: 587
-        width: 62
-        height: 3
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p92
-      rect:
-        serializedVersion: 2
-        x: 1019
-        y: 961
-        width: 3
-        height: 62
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p93
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 673
-        width: 23
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p94
-      rect:
-        serializedVersion: 2
-        x: 1009
-        y: 829
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p95
-      rect:
-        serializedVersion: 2
-        x: 974
-        y: 605
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p96
-      rect:
-        serializedVersion: 2
-        x: 659
-        y: 687
-        width: 162
-        height: 63
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: p97
-      rect:
-        serializedVersion: 2
-        x: 478
-        y: 563
-        width: 179
-        height: 386
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-    - serializedVersion: 2
       name: p98
       rect:
         serializedVersion: 2
-        x: 452
-        y: 529
+        x: 617
+        y: 722
         width: 32
         height: 32
       alignment: 0
@@ -1914,8 +1242,8 @@ TextureImporter:
       name: p99
       rect:
         serializedVersion: 2
-        x: 1
-        y: 552
+        x: 796
+        y: 628
         width: 90
         height: 90
       alignment: 0
@@ -1928,8 +1256,8 @@ TextureImporter:
       name: p100
       rect:
         serializedVersion: 2
-        x: 330
-        y: 615
+        x: 888
+        y: 550
         width: 89
         height: 90
       alignment: 0
@@ -1942,8 +1270,8 @@ TextureImporter:
       name: p101
       rect:
         serializedVersion: 2
-        x: 160
-        y: 718
+        x: 162
+        y: 778
         width: 99
         height: 99
       alignment: 0
@@ -1956,8 +1284,8 @@ TextureImporter:
       name: p102
       rect:
         serializedVersion: 2
-        x: 238
-        y: 690
+        x: 888
+        y: 642
         width: 90
         height: 23
       alignment: 0

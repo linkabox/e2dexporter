@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.6.1</string>
         <key>fileName</key>
-        <string>D:/GitHub/e2dexporter/Assets/UI/DemoAtlas/DemoAtlas.tps</string>
+        <string>D:/UnityHub/e2dexporter/Assets/UI/DemoAtlas/DemoAtlas.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -199,42 +199,6 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">imgs~/mahjong_1.png</key>
-            <key type="filename">imgs~/mahjong_10.png</key>
-            <key type="filename">imgs~/mahjong_11.png</key>
-            <key type="filename">imgs~/mahjong_12.png</key>
-            <key type="filename">imgs~/mahjong_13.png</key>
-            <key type="filename">imgs~/mahjong_14.png</key>
-            <key type="filename">imgs~/mahjong_15.png</key>
-            <key type="filename">imgs~/mahjong_16.png</key>
-            <key type="filename">imgs~/mahjong_17.png</key>
-            <key type="filename">imgs~/mahjong_18.png</key>
-            <key type="filename">imgs~/mahjong_19.png</key>
-            <key type="filename">imgs~/mahjong_2.png</key>
-            <key type="filename">imgs~/mahjong_20.png</key>
-            <key type="filename">imgs~/mahjong_21.png</key>
-            <key type="filename">imgs~/mahjong_22.png</key>
-            <key type="filename">imgs~/mahjong_23.png</key>
-            <key type="filename">imgs~/mahjong_24.png</key>
-            <key type="filename">imgs~/mahjong_3.png</key>
-            <key type="filename">imgs~/mahjong_4.png</key>
-            <key type="filename">imgs~/mahjong_5.png</key>
-            <key type="filename">imgs~/mahjong_6.png</key>
-            <key type="filename">imgs~/mahjong_7.png</key>
-            <key type="filename">imgs~/mahjong_8.png</key>
-            <key type="filename">imgs~/mahjong_9.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>43,64,85,128</rect>
-                <key>scale9Paddings</key>
-                <rect>43,64,85,128</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">imgs~/p1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -411,8 +375,6 @@
                 <false/>
             </struct>
             <key type="filename">imgs~/p2.png</key>
-            <key type="filename">imgs~/p3.png</key>
-            <key type="filename">imgs~/p4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -674,20 +636,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">imgs~/p52.png</key>
-            <key type="filename">imgs~/p53.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>17,11,33,22</rect>
-                <key>scale9Paddings</key>
-                <rect>17,11,33,22</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">imgs~/p54.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -756,22 +704,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">imgs~/p6.png</key>
-            <key type="filename">imgs~/p7.png</key>
-            <key type="filename">imgs~/p8.png</key>
-            <key type="filename">imgs~/p9.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>3,3,7,7</rect>
-                <key>scale9Paddings</key>
-                <rect>3,3,7,7</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">imgs~/p60.png</key>
             <key type="filename">imgs~/p61.png</key>
             <key type="filename">imgs~/p62.png</key>
@@ -810,35 +742,6 @@
                 <rect>28,7,55,13</rect>
                 <key>scale9Paddings</key>
                 <rect>28,7,55,13</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p66.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>33,11,65,23</rect>
-                <key>scale9Paddings</key>
-                <rect>33,11,65,23</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p67.png</key>
-            <key type="filename">imgs~/p68.png</key>
-            <key type="filename">imgs~/p69.png</key>
-            <key type="filename">imgs~/p70.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>26,10,51,20</rect>
-                <key>scale9Paddings</key>
-                <rect>26,10,51,20</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -882,9 +785,6 @@
                 <false/>
             </struct>
             <key type="filename">imgs~/p74.png</key>
-            <key type="filename">imgs~/p75.png</key>
-            <key type="filename">imgs~/p76.png</key>
-            <key type="filename">imgs~/p77.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -894,19 +794,6 @@
                 <rect>33,10,66,20</rect>
                 <key>scale9Paddings</key>
                 <rect>33,10,66,20</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p78.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>26,11,52,21</rect>
-                <key>scale9Paddings</key>
-                <rect>26,11,52,21</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -937,7 +824,6 @@
                 <false/>
             </struct>
             <key type="filename">imgs~/p85.png</key>
-            <key type="filename">imgs~/p96.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1000,72 +886,6 @@
                 <rect>28,6,56,11</rect>
                 <key>scale9Paddings</key>
                 <rect>28,6,56,11</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p91.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>16,1,31,1</rect>
-                <key>scale9Paddings</key>
-                <rect>16,1,31,1</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p92.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>1,16,1,31</rect>
-                <key>scale9Paddings</key>
-                <rect>1,16,1,31</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p93.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>6,28,11,56</rect>
-                <key>scale9Paddings</key>
-                <rect>6,28,11,56</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p94.png</key>
-            <key type="filename">imgs~/p95.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>3,5,5,9</rect>
-                <key>scale9Paddings</key>
-                <rect>3,5,5,9</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">imgs~/p97.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>45,97,89,193</rect>
-                <key>scale9Paddings</key>
-                <rect>45,97,89,193</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
