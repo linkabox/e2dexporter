@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
 public static class E2DLocalization
 {
+	[MenuItem("E2D/Open lang csv")]
+	public static void OpenConfig()
+	{
+		Process.Start(Path.GetFullPath(LangPath));
+	}
+
 	public const string LangPath = "Assets/UI/lang.csv";
 
 	private static string[] _langs;

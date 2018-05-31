@@ -36,7 +36,10 @@ public class E2DExporterData : ScriptableObject
 		GUI.color = Color.red;
 		if (GUILayout.Button("Force Build All", GUILayout.Height(50)))
 		{
-			E2DLayoutExporter.Export(package, textures, uiPrefabFolder, exportFolder, E2DLayoutExporter.BUILD_FORCE_ALL);
+			if (EditorUtility.DisplayDialog("提示", "强制导出所有资源，贴图将重新执行PremultiplyAlpha处理", "是", "否"))
+			{
+				E2DLayoutExporter.Export(package, textures, uiPrefabFolder, exportFolder, E2DLayoutExporter.BUILD_FORCE_ALL);
+			}
 		}
 		GUI.color = Color.white;
 

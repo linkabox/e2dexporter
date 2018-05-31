@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class E2DAnimator : MonoBehaviour
 {
 	public AnimationClip curClip;
@@ -23,15 +22,6 @@ public class E2DAnimator : MonoBehaviour
 				return;
 			}
 		}
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-		//if (curClip != null)
-		//{
-		//	curClip.SampleAnimation(gameObject, curClip.length * slider);
-		//}
 	}
 
 	public void SampleAnimation(AnimationClip clip, float time)

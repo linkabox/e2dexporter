@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using VisualDesignCafe.Editor.Prefabs;
 
 public class E2DCardIconGenerator : EditorWindow
 {
@@ -98,8 +99,21 @@ public class E2DCardIconGenerator : EditorWindow
 				EditorExt.MakePixelPerfect(item_icon.rectTransform);
 			}
 
+			var prefabCom = go.GetComponent<Prefab>();
+			if (prefabCom != null)
+				DestroyImmediate(prefabCom);
+
+			var guid = go.GetComponent<VisualDesignCafe.Editor.Prefabs.Guid>();
+			if (guid != null)
+				DestroyImmediate(guid);
+
 			string path = savePath + "/" + go.name + ".prefab";
-			PrefabUtility.CreatePrefab(path, go);
+			var sourcePrefab = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
+			if (sourcePrefab == null)
+			{
+				sourcePrefab = PrefabUtility.CreateEmptyPrefab(path);
+			}
+			PrefabUtility.ReplacePrefab(go, sourcePrefab);
 			DestroyImmediate(go);
 		}
 	}
