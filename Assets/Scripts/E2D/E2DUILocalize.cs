@@ -29,7 +29,7 @@ public class E2DUILocalize : MonoBehaviour
 	public string val
 	{
 		get { return _val; }
-		set
+		private set
 		{
 			_val = value;
 

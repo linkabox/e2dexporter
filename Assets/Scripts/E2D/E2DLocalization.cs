@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 
 public static class E2DLocalization
 {
-	[MenuItem("E2D/Open lang csv")]
+	[MenuItem("E2D/Localization/Open lang csv")]
 	public static void OpenConfig()
 	{
 		Process.Start(Path.GetFullPath(LangPath));
@@ -48,8 +48,22 @@ public static class E2DLocalization
 		set { SelectLanguage(value); }
 	}
 
-	private static SortedList<string, string[]> _langMap;  //Key,Lang[]
-	public static SortedList<string, string[]> LangMap
+	private static List<string> _langKeys;                  //保持与csv一致的索引
+
+	private static List<string> LangKeys
+	{
+		get
+		{
+			if (_langKeys == null)
+			{
+				LoadCsv();
+			}
+
+			return _langKeys;
+		}
+	}
+	private static Dictionary<string, string[]> _langMap;  //Key,Lang[]
+	private static Dictionary<string, string[]> LangMap
 	{
 		get
 		{
@@ -103,6 +117,11 @@ public static class E2DLocalization
 		return false;
 	}
 
+	public static bool ContainsKey(string key)
+	{
+		return LangMap.ContainsKey(key);
+	}
+
 	public static string Get(string key)
 	{
 		if (!string.IsNullOrEmpty(key))
@@ -120,64 +139,23 @@ public static class E2DLocalization
 		return "";
 	}
 
+	public static string[] GetLangsByKey(string key)
+	{
+		if (string.IsNullOrEmpty(key)) return null;
+
+		string[] langs;
+		LangMap.TryGetValue(key, out langs);
+		return langs;
+	}
+
 	public static int GetKeyIndex(string key)
 	{
 		if (!string.IsNullOrEmpty(key))
 		{
-			return LangMap.IndexOfKey(key);
+			return LangKeys.IndexOf(key);
 		}
 
 		return -1;
-	}
-
-	public static bool Set(string key, string val)
-	{
-		if (!string.IsNullOrEmpty(key))
-		{
-			string[] langs;
-			if (LangMap.TryGetValue(key, out langs))
-			{
-				if (_langIndex < langs.Length && langs[_langIndex] != val)
-				{
-					langs[_langIndex] = val;
-					SaveCsv();
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	public static bool AddKey(string key)
-	{
-		if (!string.IsNullOrEmpty(key))
-		{
-			key = key.ToUpper();
-			string[] newLangs;
-			if (!LangMap.TryGetValue(key, out newLangs))
-			{
-				newLangs = new string[Langs.Length];
-				LangMap.Add(key, newLangs);
-				SaveCsv();
-				Debug.Log("AddKey:" + key);
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public static bool DeleteKey(string key)
-	{
-		if (LangMap.Remove(key))
-		{
-			SaveCsv();
-			Debug.Log("DeleteKey:" + key);
-			return true;
-		}
-
-		return false;
 	}
 
 	public static int GetLanguageIndex(string lang)
@@ -212,70 +190,55 @@ public static class E2DLocalization
 		return false;
 	}
 
+	private static bool LoadCSV(byte[] bytes)
+	{
+		if (bytes == null) return false;
+		ByteReader reader = new ByteReader(bytes);
+
+		// The first line should contain "KEY", followed by languages.
+		BetterList<string> header = reader.ReadCSV();
+
+		// There must be at least two columns in a valid CSV file
+		if (header.size < 2) return false;
+		header.RemoveAt(0);
+
+		_langIndex = 0;
+		_langs = new string[header.size];
+		for (int i = 0; i < header.size; i++)
+		{
+			_langs[i] = header[i];
+		}
+
+		_langMap = new Dictionary<string, string[]>();
+		_langKeys = new List<string>();
+		for (; ; )
+		{
+			BetterList<string> temp = reader.ReadCSV();
+			if (temp == null || temp.size == 0) break;
+
+			string key = temp[0];
+			if (string.IsNullOrEmpty(key)) continue;
+
+			var fields = new string[_langs.Length];
+			for (int i = 1; i < temp.size; i++)
+			{
+				fields[i - 1] = temp[i];
+			}
+
+			_langMap.Add(key, fields);
+			_langKeys.Add(key);
+		}
+
+		return true;
+	}
+
+	[MenuItem("E2D/Localization/Reload csv")]
 	public static void LoadCsv()
 	{
-		_langIndex = 0;
-		_langMap = new SortedList<string, string[]>();
-		var lines = File.ReadAllLines(E2DLocalization.LangPath);
-		for (var i = 0; i < lines.Length; i++)
-		{
-			var line = lines[i];
-			if (string.IsNullOrEmpty(line)) continue;
-
-			var cols = line.Split(',');
-			if (i == 0)
-			{
-				_langs = new string[cols.Length - 1];
-				for (int j = 1; j < cols.Length; j++)
-				{
-					_langs[j - 1] = cols[j];
-				}
-			}
-			else
-			{
-				string key = cols[0];
-				if (!string.IsNullOrEmpty(key))
-				{
-					var langs = new string[_langs.Length];
-					_langMap.Add(key, langs);
-					for (int j = 1; j < cols.Length; j++)
-					{
-						langs[j - 1] = cols[j];
-					}
-				}
-				else
-				{
-					Debug.LogError("发现key为空字符串，row:" + (i + 1));
-				}
-			}
-		}
+		var bytes = File.ReadAllBytes(E2DLocalization.LangPath);
+		LoadCSV(bytes);
 
 		E2DUIRoot.BroadcastMessage("OnLocalize", SendMessageOptions.DontRequireReceiver);
 		Debug.Log("Load Localization csv success!");
-	}
-
-	public static void SaveCsv()
-	{
-		if (_langMap == null) return;
-
-		using (var file = new StreamWriter(LangPath))
-		{
-			file.WriteLine("key," + string.Join(",", _langs));
-			for (int i = 0; i < _langMap.Keys.Count; i++)
-			{
-				string key = _langMap.Keys[i];
-				if (!string.IsNullOrEmpty(key))
-				{
-					file.WriteLine(key + "," + string.Join(",", _langMap.Values[i]));
-				}
-				else
-				{
-					Debug.LogError("Key为空字符串，请检查!");
-				}
-			}
-		}
-
-		E2DUIRoot.BroadcastMessage("OnLocalize", SendMessageOptions.DontRequireReceiver);
-		Debug.Log("Save Localization csv success!");
 	}
 }

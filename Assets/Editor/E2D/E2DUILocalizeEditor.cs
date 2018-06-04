@@ -9,106 +9,58 @@ using UnityEngine;
 [CustomEditor(typeof(E2DUILocalize), true)]
 public class E2DUILocalizeEditor : Editor
 {
-	private int _selectedIndex;
-
-	public string curKey
-	{
-		get
-		{
-			if (mKeys != null && _selectedIndex < mKeys.Length)
-			{
-				return mKeys[_selectedIndex];
-			}
-
-			return null;
-		}
-	}
-
-	private string[] mKeys;
 	private E2DUILocalize _target;
-
-	private bool _toggle = true;
-	private string _newKey;
-
 	void OnEnable()
 	{
 		_target = target as E2DUILocalize;
-		Rebuild();
-	}
-
-	public void Rebuild()
-	{
-		string oldKey = _target.key;
-		_selectedIndex = 0;
-		var dict = E2DLocalization.LangMap;
-		if (dict.Count > 0)
-		{
-			mKeys = dict.Keys.ToArray();
-			for (int i = 0; i < mKeys.Length; i++)
-			{
-				if (mKeys[i] == oldKey)
-				{
-					_selectedIndex = i;
-					break;
-				}
-			}
-		}
 	}
 
 	public override void OnInspectorGUI()
 	{
+		EditorGUILayout.BeginHorizontal();
+		if (GUILayout.Button("Reload Csv"))
+		{
+			E2DLocalization.LoadCsv();
+		}
+
+		E2DLocalization.LangIndex = EditorGUILayout.Popup(E2DLocalization.LangIndex, E2DLocalization.Langs);
+		GUILayout.FlexibleSpace();
+		EditorGUILayout.EndHorizontal();
+
+		serializedObject.Update();
+
 		GUILayout.Space(6f);
+		EditorGUIUtility.labelWidth = 80f;
 
-		if (mKeys != null && mKeys.Length > 0)
-		{
-			_selectedIndex = EditorGUILayout.Popup("Key:", _selectedIndex, mKeys);
-			_target.key = this.curKey;
-			string newVal = EditorGUILayout.TextField("Value:", _target.val);
-			if (newVal != _target.val)
-			{
-				E2DLocalization.Set(_target.key, newVal);
-			}
-		}
-		else
-		{
-			EditorGUILayout.LabelField("当前没有任何Key");
-		}
+		GUILayout.BeginHorizontal();
+		_target.key = EditorGUILayout.TextField("Key", _target.key);
 
-		EditorGUILayout.Space();
+		string myKey = _target.key;
+		bool isPresent = E2DLocalization.ContainsKey(myKey);
+		GUI.color = isPresent ? Color.green : Color.red;
+		GUILayout.BeginVertical(GUILayout.Width(22f));
+		GUILayout.Space(2f);
+		GUILayout.Label(isPresent ? "\u2714" : "\u2718", "TL SelectionButtonNew", GUILayout.Height(20f));
+		GUILayout.EndVertical();
+		GUI.color = Color.white;
+		GUILayout.EndHorizontal();
 
-		if (GUILayout.Button("Language", "MiniToolbarButton")) _toggle = !_toggle;
-		if (_toggle)
+		if (isPresent)
 		{
 			GUILayout.BeginVertical("ProgressBarBack");
-			GUILayout.BeginHorizontal();
-			_newKey = EditorGUILayout.TextField("New Key:", _newKey);
-			if (GUILayout.Button("Add Key"))
-			{
-				E2DLocalization.AddKey(_newKey);
-				Rebuild();
-				Repaint();
-				return;
-			}
-			GUILayout.EndHorizontal();
+			string[] langs = E2DLocalization.Langs;
+			string[] fields = E2DLocalization.GetLangsByKey(myKey);
 
-			EditorGUILayout.Space();
-			E2DLocalization.LangIndex = EditorGUILayout.Popup("Language:", E2DLocalization.LangIndex, E2DLocalization.Langs);
-
-			EditorGUILayout.Space();
-			if (GUILayout.Button("SaveCsv"))
+			for (int i = 0; i < fields.Length; i++)
 			{
-				E2DLocalization.SaveCsv();
-			}
-			if (GUILayout.Button("ReloadCsv"))
-			{
-				E2DLocalization.LoadCsv();
-				//Reload必须重新保存一下，因为key的排序已经改变了
-				E2DLocalization.SaveCsv();
-				Rebuild();
-				Repaint();
-				return;
+				GUI.color = i == E2DLocalization.LangIndex ? Color.red : Color.white;
+				GUILayout.Label(langs[i] + "\t" + fields[i]);
+				GUI.color = Color.white;
 			}
 			GUILayout.EndVertical();
 		}
+
+		serializedObject.ApplyModifiedProperties();
 	}
+
 }
