@@ -50,7 +50,7 @@ public static class E2DLocalization
 
 	private static List<string> _langKeys;                  //保持与csv一致的索引
 
-	private static List<string> LangKeys
+	public static List<string> LangKeys
 	{
 		get
 		{

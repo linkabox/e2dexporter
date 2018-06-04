@@ -15,11 +15,11 @@ public class E2DUILocalize : MonoBehaviour
 		set
 		{
 			if (value == _key) return;
+			_key = value;
 
 			string val;
 			if (E2DLocalization.TryGet(value, out val))
 			{
-				_key = value;
 				this.val = val;
 			}
 		}
