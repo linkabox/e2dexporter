@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   package: mainui
   exportFolder: D:\Projects\ejoy2dx\project\coco_island\asset
+  defaultSpriteName: rect
   textures:
   - {fileID: 2800000, guid: 9233907d50ddd4d49b4a8caca6877c7a, type: 3}
   - {fileID: 2800000, guid: 92d55983f78cad74d89b537e102d4975, type: 3}

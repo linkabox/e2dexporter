@@ -127,6 +127,10 @@ public class E2DWidget : E2DUIComponent
 		if (image != null && btn == null)
 		{
 			isAnchor = false;
+			if (image.sprite == null)
+			{
+				image.sprite = E2DPackage.active.defaultSprite;
+			}
 			E2DSprite e2DSprite;
 			if (E2DPackage.active.spriteRefMap.TryGetValue(image.sprite, out e2DSprite))
 			{

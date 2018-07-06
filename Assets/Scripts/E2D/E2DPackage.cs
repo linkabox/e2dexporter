@@ -29,11 +29,13 @@ public class E2DPackage
 	public Dictionary<string, E2DWidget> uiRefMap;
 	public Dictionary<Sprite, E2DSprite> spriteRefMap;
 
+	public Sprite defaultSprite;
 	public HashSet<Texture> rawImageSet;
 
-	public E2DPackage(string package, Texture2D[] textures)
+	public E2DPackage(string package, string defaultSpriteName, Texture2D[] textures)
 	{
 		this.name = package;
+
 		this.textures = new List<Texture2D>();
 		for (int i = 0; i < textures.Length; i++)
 		{
@@ -51,9 +53,13 @@ public class E2DPackage
 			foreach (var o in objs)
 			{
 				var sprite = o as Sprite;
-				if (o != null)
+				if (sprite != null)
 				{
 					allSprites.Add(sprite);
+					if (sprite.name == defaultSpriteName)
+					{
+						this.defaultSprite = sprite;
+					}
 				}
 			}
 		}
