@@ -25,6 +25,10 @@ public class E2DAssetImporter : AssetPostprocessor
 				Debug.Log("Set <rawImage> update flag:" + path);
 				EditorPrefs.SetBool("E2D_" + Path.GetFileNameWithoutExtension(path), true);
 			}
+			else if (path.Contains("lang.csv"))
+			{
+				E2DLocalization.LoadCsv();
+			}
 		}
 	}
 }
