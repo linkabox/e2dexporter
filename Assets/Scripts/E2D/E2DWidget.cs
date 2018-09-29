@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using VisualDesignCafe.Editor.Prefabs;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class E2DWidget : E2DUIComponent
 {
@@ -21,6 +23,7 @@ public class E2DWidget : E2DUIComponent
 
 	public void Convert()
 	{
+#if UNITY_EDITOR
 		ParseComponent(root, root);
 		if (animator != null)
 		{
@@ -72,6 +75,7 @@ public class E2DWidget : E2DUIComponent
 				}
 			}
 		}
+#endif
 	}
 
 	/// <summary>

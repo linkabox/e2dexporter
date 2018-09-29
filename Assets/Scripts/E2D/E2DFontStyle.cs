@@ -56,7 +56,7 @@ public class E2DFontStyle : E2DComponent
 				break;
 		}
 
-		var localize = text.GetComponent<E2DUILocalize>();
+		var localize = text.GetComponent<UILocalize>();
 		if (localize != null)
 		{
 			this.langKey = localize.key;
@@ -73,7 +73,7 @@ public class E2DFontStyle : E2DComponent
 		sb.AppendFormat("\tid = {0},\n", this.id);
 		sb.AppendFormat("\tsize = {0}, align = {1}, noedge = {2}, color = {3},\n", this.size, this.align, this.noedge.ToString().ToLower(), this.color.ToARGB());
 		sb.AppendFormat("\twidth = {0}, height = {1},\n", this.width, this.height);
-		int text_id = E2DLocalization.GetKeyIndex(this.langKey);
+		int text_id = Localization.GetKeyIndex(this.langKey);
 		if (text_id != -1)
 		{
 			sb.AppendFormat("\ttext_id = {0},\n", text_id + 1);

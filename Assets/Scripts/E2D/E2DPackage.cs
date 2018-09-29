@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Text;
-using UnityEditor;
-using UnityEditor.Sprites;
 using UnityEngine;
-using UnityEngine.U2D;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 
 public class E2DPackage
@@ -47,6 +46,7 @@ public class E2DPackage
 
 		//读取相关图集的所有Sprite
 		List<Sprite> allSprites = new List<Sprite>();
+#if UNITY_EDITOR
 		foreach (var texture in this.textures)
 		{
 			var objs = AssetDatabase.LoadAllAssetRepresentationsAtPath(AssetDatabase.GetAssetPath(texture));
@@ -63,6 +63,7 @@ public class E2DPackage
 				}
 			}
 		}
+#endif
 
 		this.sprites = new List<E2DSprite>(allSprites.Count);
 		this.spriteRefMap = new Dictionary<Sprite, E2DSprite>();

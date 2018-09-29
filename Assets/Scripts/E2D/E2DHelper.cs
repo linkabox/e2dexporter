@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class E2DHelper
 {
@@ -34,15 +33,18 @@ public static class E2DHelper
 
 	public static string PrintNodePath(Transform node, Transform root, bool printRoot = true)
 	{
+#if UNITY_EDITOR
 		if (printRoot)
-			return root.name + "/" + AnimationUtility.CalculateTransformPath(node, root);
-		return AnimationUtility.CalculateTransformPath(node, root);
+			return root.name + "/" + UnityEditor.AnimationUtility.CalculateTransformPath(node, root);
+		return UnityEditor.AnimationUtility.CalculateTransformPath(node, root);
+#else
+		return "";
+#endif
 	}
 
 	public static Transform FindRoot(Transform node)
 	{
-		Transform parent = null;
-		while (node.parent != null && node.parent != E2DLocalization.E2DUIRoot.transform)
+		while (node.parent != null && node.parent != Localization.UIRoot.transform)
 		{
 			node = node.parent;
 		}

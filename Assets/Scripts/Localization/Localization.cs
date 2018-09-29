@@ -5,18 +5,31 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
-public static class E2DLocalization
+public static class Localization
 {
-	[MenuItem("E2D/Localization/Open lang csv")]
+#if UNITY_EDITOR
+	[UnityEditor.MenuItem("Localization/Reload csv")]
+#endif
+	public static void LoadCsv()
+	{
+		var bytes = File.ReadAllBytes(Localization.LangPath);
+		LoadCSV(bytes);
+
+		UIRoot.BroadcastMessage("OnLocalize", SendMessageOptions.DontRequireReceiver);
+		Debug.Log("Load Localization csv success!");
+	}
+
+#if UNITY_EDITOR
+	[UnityEditor.MenuItem("Localization/Open lang csv")]
 	public static void OpenConfig()
 	{
 		Process.Start(Path.GetFullPath(LangPath));
 	}
+#endif
 
 	public const string LangPath = "Assets/UI/lang.csv";
 
@@ -77,7 +90,7 @@ public static class E2DLocalization
 	}
 
 	private static GameObject _uiRoot;
-	public static GameObject E2DUIRoot
+	public static GameObject UIRoot
 	{
 		get
 		{
@@ -181,8 +194,8 @@ public static class E2DLocalization
 			if (newIndex != _langIndex)
 			{
 				_langIndex = newIndex;
-				E2DUIRoot.BroadcastMessage("OnLocalize", SendMessageOptions.DontRequireReceiver);
-				PlayerPrefs.SetString("E2DLocalization", language);
+				UIRoot.BroadcastMessage("OnLocalize", SendMessageOptions.DontRequireReceiver);
+				PlayerPrefs.SetString("Localization", language);
 				return true;
 			}
 		}
@@ -230,15 +243,5 @@ public static class E2DLocalization
 		}
 
 		return true;
-	}
-
-	[MenuItem("E2D/Localization/Reload csv")]
-	public static void LoadCsv()
-	{
-		var bytes = File.ReadAllBytes(E2DLocalization.LangPath);
-		LoadCSV(bytes);
-
-		E2DUIRoot.BroadcastMessage("OnLocalize", SendMessageOptions.DontRequireReceiver);
-		Debug.Log("Load Localization csv success!");
 	}
 }

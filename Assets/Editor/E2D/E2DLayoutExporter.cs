@@ -27,7 +27,7 @@ public class E2DAssetImporter : AssetPostprocessor
 			}
 			else if (path.Contains("lang.csv"))
 			{
-				E2DLocalization.LoadCsv();
+				Localization.LoadCsv();
 			}
 		}
 	}
@@ -120,7 +120,7 @@ public class E2DLayoutExporter : EditorWindow
 			//Prefab根节点隐藏的忽略导出
 			if (prefab.activeSelf)
 			{
-				GameObject instGo = Instantiate(prefab, E2DLocalization.E2DUIRoot.transform);
+				GameObject instGo = Instantiate(prefab, Localization.UIRoot.transform);
 				var instTrans = instGo.transform as RectTransform;
 				if (instTrans.localScale != Vector3.one)
 				{
@@ -184,7 +184,7 @@ public class E2DLayoutExporter : EditorWindow
 
 		//拷贝lang本地化配置
 		string langDest = Path.Combine(exportDir, "lang.csv");
-		FileUtil.ReplaceFile(E2DLocalization.LangPath, langDest);
+		FileUtil.ReplaceFile(Localization.LangPath, langDest);
 		logger.AppendLine("Export Lang csv:" + langDest);
 
 		bool forceRefresh = mode == BUILD_FORCE_ALL;

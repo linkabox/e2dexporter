@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class E2DExportSpriteData : ScriptableObject
@@ -20,22 +19,28 @@ public class E2DExportSpriteData : ScriptableObject
 	public const string cachedPath = "Assets/Editor/E2D/E2DExportSprite.asset";
 	public List<Sprite> sprites;
 
-	[MenuItem("E2D/GenExportSpriteData")]
+#if UNITY_EDITOR
+	[UnityEditor.MenuItem("E2D/GenExportSpriteData")]
 	static void ResetData()
 	{
 		_instance = GenData();
 	}
+#endif
 
 	static E2DExportSpriteData GenData()
 	{
-		var data = AssetDatabase.LoadAssetAtPath<E2DExportSpriteData>(cachedPath);
+#if UNITY_EDITOR
+		var data = UnityEditor.AssetDatabase.LoadAssetAtPath<E2DExportSpriteData>(cachedPath);
 		if (data == null)
 		{
 			data = ScriptableObject.CreateInstance<E2DExportSpriteData>();
-			AssetDatabase.CreateAsset(data, cachedPath);
+			UnityEditor.AssetDatabase.CreateAsset(data, cachedPath);
 		}
 
 		return data;
+#else
+		return null;
+#endif
 	}
 
 	public bool Contain(Sprite sprite)

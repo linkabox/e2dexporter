@@ -89,7 +89,7 @@ public class E2DCardIconGenerator : EditorWindow
 		for (var i = 0; i < templatePrefabs.Length; i++)
 		{
 			var templatePrefab = templatePrefabs[i];
-			var go = GameObject.Instantiate(templatePrefab, E2DLocalization.E2DUIRoot.transform);
+			var go = GameObject.Instantiate(templatePrefab, Localization.UIRoot.transform);
 			go.name = typeName + (i + 1);
 			for (int j = 0; j < i + 1; j++)
 			{

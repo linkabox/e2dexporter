@@ -265,13 +265,6 @@ public class MyEditModeTest
 	}
 
 	[Test]
-	public void CsvTest()
-	{
-		E2DLocalization.LoadCsv();
-		E2DLocalization.SaveCsv();
-	}
-
-	[Test]
 	public void AnimationClipTest()
 	{
 		GameObject go = GameObject.Find("numGIF");

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(Graphic))]
-public class E2DUILocalize : MonoBehaviour
+public class UILocalize : MonoBehaviour
 {
 	[SerializeField]
 	private string _key = "";
@@ -18,7 +18,7 @@ public class E2DUILocalize : MonoBehaviour
 			_key = value;
 
 			string val;
-			if (E2DLocalization.TryGet(value, out val))
+			if (Localization.TryGet(value, out val))
 			{
 				this.val = val;
 			}
@@ -71,6 +71,6 @@ public class E2DUILocalize : MonoBehaviour
 
 	void OnLocalize()
 	{
-		this.val = E2DLocalization.Get(key);
+		this.val = Localization.Get(key);
 	}
 }

@@ -45,10 +45,17 @@ public abstract class E2DUIComponent : E2DComponent
 
 	public virtual string ExportCom()
 	{
-		string name = E2DHelper.PrintNodePath(node, root, false);
-		if (string.IsNullOrEmpty(name))
-			return string.Format("\t\t{{id = {0}}},\n", this.id);
-		return string.Format("\t\t{{id = {0}, name = \"{1}\"}},\n", this.id, name);
+		if (node == root)
+		{
+			return string.Format("\t\t{{id = {0}, name = \"{1}\"}},\n", this.id, name);
+		}
+		else
+		{
+			string name = E2DHelper.PrintNodePath(node, root, false);
+			if (string.IsNullOrEmpty(name))
+				return string.Format("\t\t{{id = {0}}},\n", this.id);
+			return string.Format("\t\t{{id = {0}, name = \"{1}\"}},\n", this.id, name);
+		}
 	}
 
 	public abstract string ExportFrame(int index);

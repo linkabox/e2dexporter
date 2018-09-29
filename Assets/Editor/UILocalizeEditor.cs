@@ -6,13 +6,13 @@ using UnityEditor;
 using UnityEngine;
 
 [CanEditMultipleObjects]
-[CustomEditor(typeof(E2DUILocalize), true)]
-public class E2DUILocalizeEditor : Editor
+[CustomEditor(typeof(UILocalize), true)]
+public class UILocalizeEditor : Editor
 {
-	private E2DUILocalize _target;
+	private UILocalize _target;
 	void OnEnable()
 	{
-		_target = target as E2DUILocalize;
+		_target = target as UILocalize;
 	}
 
 	public override void OnInspectorGUI()
@@ -20,10 +20,10 @@ public class E2DUILocalizeEditor : Editor
 		EditorGUILayout.BeginHorizontal();
 		if (GUILayout.Button("Reload Csv"))
 		{
-			E2DLocalization.LoadCsv();
+			Localization.LoadCsv();
 		}
 
-		E2DLocalization.LangIndex = EditorGUILayout.Popup(E2DLocalization.LangIndex, E2DLocalization.Langs);
+		Localization.LangIndex = EditorGUILayout.Popup(Localization.LangIndex, Localization.Langs);
 		GUILayout.FlexibleSpace();
 		EditorGUILayout.EndHorizontal();
 
@@ -36,7 +36,7 @@ public class E2DUILocalizeEditor : Editor
 		_target.key = EditorGUILayout.TextField("Key", _target.key);
 
 		string myKey = _target.key;
-		bool isPresent = E2DLocalization.ContainsKey(myKey);
+		bool isPresent = Localization.ContainsKey(myKey);
 		GUI.color = isPresent ? Color.green : Color.red;
 		GUILayout.BeginVertical(GUILayout.Width(22f));
 		GUILayout.Space(2f);
@@ -48,12 +48,12 @@ public class E2DUILocalizeEditor : Editor
 		if (isPresent)
 		{
 			GUILayout.BeginVertical("ProgressBarBack");
-			string[] langs = E2DLocalization.Langs;
-			string[] fields = E2DLocalization.GetLangsByKey(myKey);
+			string[] langs = Localization.Langs;
+			string[] fields = Localization.GetLangsByKey(myKey);
 
 			for (int i = 0; i < fields.Length; i++)
 			{
-				GUI.color = i == E2DLocalization.LangIndex ? Color.red : Color.white;
+				GUI.color = i == Localization.LangIndex ? Color.red : Color.white;
 				GUILayout.Label(langs[i] + "\t" + fields[i]);
 				GUI.color = Color.white;
 			}
@@ -61,7 +61,7 @@ public class E2DUILocalizeEditor : Editor
 		}
 		else if (!string.IsNullOrEmpty(myKey))
 		{
-			var mKeys = E2DLocalization.LangKeys;
+			var mKeys = Localization.LangKeys;
 			GUILayout.BeginHorizontal();
 			GUILayout.Space(80f);
 			GUILayout.BeginVertical();
